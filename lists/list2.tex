@@ -21,29 +21,18 @@
   linkcolor=blue,
   linkbordercolor={0 0 1}
 }
- 
-\renewcommand\lstlistingname{Algorithm}
-\renewcommand\lstlistlistingname{Algorithms}
-\def\lstlistingautorefname{Alg.}
-
-\lstdefinestyle{Python}{
-    language        = Python,
-    frame           = lines, 
-    basicstyle      = \footnotesize,
-    keywordstyle    = \color{blue},
-    stringstyle     = \color{green},
-    commentstyle    = \color{red}\ttfamily
-}
 
 \setlength{\parindent}{0.0in}
 \setlength{\parskip}{0.05in}
 
 % Edit these as appropriate
 \newcommand\course{Rener Oliveira}
-\newcommand\hwnumber{1}                  % <-- homework number
-\newcommand\NetIDa{netid19823}           % <-- NetID of person #1
-\newcommand\NetIDb{netid12038}           % <-- NetID of person #2 (Comment this line out for problem sets)
 
+\newcommand{\linesep}{{\color{black} \rule{\linewidth}{0.5mm} }}
+
+\newcommand{\ex}[1]{\textcolor{blue}{\textbf{Exercício #1}}}
+\newcommand{\sol}[1]{\textbf{Solução #1}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
 \pagestyle{fancyplain}
 \headheight 35pt              % <-- Comment this line out for problem sets (make sure you are person #1)
 \chead{\textbf{\Large Lista 2 \\ Curvas e Superfícies}}
@@ -55,7 +44,76 @@
 
 \begin{document}
 	
-	teste
+	\begin{enumerate}
+		
+		\item [\ex{1}] \blue{Desenhe em ambiente computacional, utilizando sistemas de computação simbólica, incluindo a animação do vetor tangente percorrendo as seguintes parametrizações da parábola $\alpha(t)=(t,t^2)$ e $\gamma(t) = (t^3,t^6)$. Mostre que $\alpha$ é curva regular e $\gamma$ não é regular. Qual seria a função naturalmente candidata a ser uma reparametrização entre as duasparametrizações? Porque falha?
+	}
+		
+		\item [\sol{1}] ...
+		
+		
+		\linesep
+		\item [\ex{2}] \blue{Mostre que as curvas regulares $\alpha(t)=(t,e^t)$, $t\in\mathbb{R}$ e $\beta(s) = (\log(s),s)$, $s\in(0,\infty)$ têm o mesmo traço.
+		}
+	\item [\sol{2}] ...
+	
+	\linesep
+		\item [\ex{3}] \blue{Calcule o comprimento de arco das seguintes curvas:}
+			
+			\begin{enumerate}[a.]
+				\color{blue}
+				\item $\alpha(t)=(3\cosh 2t,3\sinh 2t,6t), ~~t\in[0,\pi]$
+				\item Catenária: $\gamma(t)=(t,\cosh(t))$, a partir do ponto $(0,1)$.
+			\end{enumerate}
+		
+		\item [\sol{3}]...
+		
+		\linesep
+		
+		\item[\ex{4}] \blue{\textit{Mudanças de parâmetro:}}
+		
+		\begin{enumerate}[a.]
+			\color{blue}
+			\item Demonstrar que $s(\theta)=\dfrac{\theta^2}{\theta^2+1}$ é uma mudança de parâmetro diferenciável que transforma o invervalo $(0\infty)$ no intervalo $(0,1)$.
+			
+			\item Mostrar que a função $\lambda:(-1,1)\to(-\infty,+\infty)$ definida por $\lambda(t):=\tan(\pi t/2)$ é uma mudança de parâmetro.
+			
+			\item Provar que qualquer curva pode ser reparametrizada de forma tal que o domínio da reparametrização seja um intervalo de extremos $0$ e $1$.
+		\end{enumerate}
+	
+	\item [\sol{4}] ...
+	
+	\linesep
+	
+	\item[\ex{5}]\blue{
+	Provar que a curva
+
+$$\gamma(t)=\left(2t,\dfrac{2}{1+t^2}\right)$$
+
+com $t>0$ é regular e é uma reparametrização de
+
+$$\alpha(t)=\left(\dfrac{2\cos t}{1+\sin t},1+\sin t\right),~~t\in(-\pi/2,\pi/2)$$
+}
+
+	\item [\sol{5}]...
+	
+	\linesep
+	
+	\item[\ex{6}] Seja $\alpha(t)=\left(\frac{1}{\sqrt3}\cos t+\frac{1}{\sqrt2}\sin t,\dfrac{1}{\sqrt3}\cos t-\dfrac{1}{\sqrt2}\sin t\right)$. Reparametrizar $\alpha$ pelo comprimento do arco.
+	\item[\sol{6}] ...
+	
+	\linesep
+	
+	\item [\ex{7}] Mostre que, se todas as retas tangentes a uma curva regular passam por um mesmo ponto $P\in\mathbb{R}^2$ , então seu traço está contido em uma reta.
+	
+	\item[\sol{7}]...
+	
+	\linesep
+	
+	\item [ex{8}] Mostre que, se todas as retas normais a uma curva regular passam por um mesmo ponto $P\in\mathbb{R}^2$, então seu traço está contido em um círculo.
+	
+	\item[\sol{8}]
+	\end{enumerate}
 	
 \newpage
 
