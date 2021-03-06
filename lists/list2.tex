@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}
 
 \usepackage{fullpage}
+\usepackage{cancel}
 \usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
 \usepackage{lastpage}
@@ -27,9 +28,9 @@
 
 % Edit these as appropriate
 \newcommand\course{Rener Oliveira}
-
+\newcommand\lcur{\mathcal{L}}
 \newcommand{\linesep}{{\color{black} \rule{\linewidth}{0.5mm} }}
-
+\newcommand{\rpos}{\mathbb{R}_{>0}}
 \newcommand{\ex}[1]{\textcolor{blue}{\textbf{Exercício #1}}}
 \newcommand{\sol}[1]{\textbf{Solução #1}}
 \newcommand{\blue}[1]{{\color{blue}{#1}}}
@@ -46,16 +47,46 @@
 	
 	\begin{enumerate}
 		
-		\item [\ex{1}] \blue{Desenhe em ambiente computacional, utilizando sistemas de computação simbólica, incluindo a animação do vetor tangente percorrendo as seguintes parametrizações da parábola $\alpha(t)=(t,t^2)$ e $\gamma(t) = (t^3,t^6)$. Mostre que $\alpha$ é curva regular e $\gamma$ não é regular. Qual seria a função naturalmente candidata a ser uma reparametrização entre as duasparametrizações? Porque falha?
+		\item [\ex{1}] \blue{Desenhe em ambiente computacional, utilizando sistemas de computação simbólica, incluindo a animação do vetor tangente percorrendo as seguintes parametrizações da parábola $\alpha(t)=(t,t^2)$ e $\gamma(t) = (t^3,t^6)$. Mostre que $\alpha$ é curva regular e $\gamma$ não é regular. Qual seria a função naturalmente candidata a ser uma reparametrização entre as duas parametrizações? Porque falha?
 	}
 		
-		\item [\sol{1}] ...
+		\item [\sol{1}] Veja que $\alpha'(t)=(1,2t^2)$ e $\gamma'(t)=(3t^2,6t^5)$. Por conta da coordenada constante, $\alpha'(t)\neq 0 ~~\forall ~t\in\mathbb{R}$, logo é regular. Já $\gamma'$ é anulada para $t=0$, logo não é regular.
+		
+		Antes de definir reparametrização vamos fixar algumas coisas. Seja $I_1$ o domínio de $\alpha$ e $I_2$ o domínio de $\gamma$; Vamos considerar neste caso $I_1=I_2=\mathbb{R}$. $\gamma$ é reparametrização de $\alpha$ se existe um \textbf{difeomorfismo} $\phi:I_2\to I_1$ tal que $\gamma(t)=\alpha(\phi(t))~\forall t \in I_2$.
+		
+		Assim a função naturalmente candidata à reparametrização de $\alpha$ é $\phi(t)=t^3$.
+		
+		Porque falha? Pois $\phi$ não é um difeomorfismo, logo não é reparametrização segundo a definição dada! Sua inversa $\phi^{-1}(t)=t^{1/3}$ não é diferenciável em todos os pontos do domínio, pois a derivada $\frac13t^{-2/3}$ não está definita em $t=0$.
 		
 		
 		\linesep
 		\item [\ex{2}] \blue{Mostre que as curvas regulares $\alpha(t)=(t,e^t)$, $t\in\mathbb{R}$ e $\beta(s) = (\log(s),s)$, $s\in(0,\infty)$ têm o mesmo traço.
 		}
-	\item [\sol{2}] ...
+	\item [\sol{2}] Queremos provar que $\alpha(\mathbb{R})=\beta(\rpos)$. Tome 
+	
+	\begin{align*}
+	\phi:\rpos&\to\mathbb{R}\\
+	\phi(s)&=\log(s)
+	\end{align*}
+	
+	Afirmo que $\phi$ é bijetiva. A injetividade segue da monotonicidade estrita do logaritmo\footnote{Uma outra prova (rascunho) rápida: $\log(x)=\log(y)=b\Rightarrow e^b=x\text{ e }e^b=y\Rightarrow x=y$}. Segue um rascunho da prova da sobrejetividade:
+	
+	Usando a definição $\log x:=\displaystyle\int_1^x\frac1udu$, pelo Teorema Fundamental do Cálculo\cite{lima1981curso}, temos que $\log$ é diferenciável em todo seu domínio ($\rpos$), disso segue a continuidade. 
+	
+	Para todo inteiro $k$ no contradomínio $\mathbb{R}$ conseguimos encontrar um elemento $x$ no domínio tal que $\log(x)=k$ usando que $\log(e)=1$ e a propriedade $\log(ab)=\log(a)+\log(b)$, os inteiros positivos são atingidos pelas potências positivas de $e$ e os negativos pelas potências negativas. Pela continuidade, e pelo Teorema do Valor Intermediário\cite{lima1981curso}, segue que $\forall k\in\mathbb{Z}$, vale que $\forall r \in (k,k+1),~\exists x\in\rpos$ tal que $\log(x)=r$, que prova a sobrejetividade.
+	
+	Acima já demos o motivo de $\phi$ ser diferenciável, se verificarmos que $\phi^{-1}$ é diferenciável, teremos que $\phi$ é um difeomorfismo. De fato $\phi^{-1}:\mathbb{R}\to\rpos$ definida pel exponencial, não só é diferenciável como pertence a $C^{\infty}$.
+	
+	Sendo assim $\phi$ é difeomorfismo. Note que $\beta(s)=\alpha(\phi(s))$.
+	
+	O traço de $\alpha$, $\alpha(\mathbb{R})$ é o conjunto $\{(x,y);x\in \mathbb{R},~y\in\rpos\}$, pois a segunda entrada exponencial é estritamente positiva.
+	
+	O difeomorfismo $\phi$ (por ser bijetivo) leva todos os pontos $s\in\rpos$ em $\mathbb{R}$. Sendo assim,
+	
+	 $$\beta(\rpos)=\alpha(\phi(\rpos))=\alpha(\mathbb{R})$$
+	 
+	 \textbf{Como queríamos demonstrar.}
+	
 	
 	\linesep
 		\item [\ex{3}] \blue{Calcule o comprimento de arco das seguintes curvas:}
@@ -66,7 +97,38 @@
 				\item Catenária: $\gamma(t)=(t,\cosh(t))$, a partir do ponto $(0,1)$.
 			\end{enumerate}
 		
-		\item [\sol{3}]...
+		
+		
+		
+		\item [\sol{3}]
+		Usaremos a fórmuma $\displaystyle\int_{t_0}^{t}||\gamma'(u)||du$ para calcular o comprimento de arco de $\gamma$ entre $t_0$ e $t$.
+		\begin{enumerate}[a.]
+			\item Para $\alpha(t)=(3\cosh 2t,3\sinh 2t,6t)$ com $t\in[0,\pi]$, temos
+			\begin{align*}
+				&\int_{0}^{\pi}||\alpha'(u)||du\\
+				=&\int_{0}^{\pi}||(3\cosh 2u,3\sinh 2u,6u)'||du\\
+				=&\int_{0}^{\pi}||(6\sinh 2u,6\cosh2u,6)||du\\
+				=&\int_{0}^{\pi}\left(36(\sinh^22u+\cosh^22u+1)\right)^{1/2}du\\
+				=&\int_{0}^{\pi}6(2\cosh^22u-1+1)^{1/2}du\\
+				=&6\sqrt2\int_{0}^{\pi}\cosh2u~du\\
+				=&3\sqrt2\left.\sinh2u\right|_ {0}^{\pi}\\
+				=&3\sqrt2(\sinh(2\pi)-\cancelto{0}{\sinh(0)})\\
+				=&\frac32\sqrt2(e^{2\pi}-e^{-2\pi})
+			\end{align*}
+		
+		\item Para $\gamma(t)=(t,\cosh(t))$, a partir de $(0,1)$, quer dizer a partir de $t=1$, e iremos calcular a distância parametrizada por $s$.
+		
+		\begin{align*}
+			&\int_{1}^{s}||(t,\cosh(t))'||dt\\
+			=&\int_{1}^{s}||(1,\sinh(t))||dt\\
+			=&\int_{1}^{s}\left(1+\sinh^2t\right)^{1/2}dt\\
+			=&\int_{1}^{s}(\cosh^2t)^{1/2}dt\\
+			=&\int_{1}^{s}\cosh t ~dt\\
+			=&\left.\sinh t\right|_{t=1}^{t=s}\\
+			=&\sinh(s)-\cancelto{0}{\sinh(0)}\\
+			=&\sinh(s)
+		\end{align*}
+		\end{enumerate}
 		
 		\linesep
 		
@@ -74,14 +136,81 @@
 		
 		\begin{enumerate}[a.]
 			\color{blue}
-			\item Demonstrar que $s(\theta)=\dfrac{\theta^2}{\theta^2+1}$ é uma mudança de parâmetro diferenciável que transforma o invervalo $(0\infty)$ no intervalo $(0,1)$.
+			\item Demonstrar que $s(\theta)=\dfrac{\theta^2}{\theta^2+1}$ é uma mudança de parâmetro diferenciável que transforma o invervalo $(0,\infty)$ no intervalo $(0,1)$.
+			
+			
 			
 			\item Mostrar que a função $\lambda:(-1,1)\to(-\infty,+\infty)$ definida por $\lambda(t):=\tan(\pi t/2)$ é uma mudança de parâmetro.
 			
 			\item Provar que qualquer curva pode ser reparametrizada de forma tal que o domínio da reparametrização seja um intervalo de extremos $0$ e $1$.
 		\end{enumerate}
 	
-	\item [\sol{4}] ...
+	\item [\sol{4}] 
+	\begin{enumerate}[\textbf{a.}]
+		\item Primeiramente precisamos mostrar que $s(\rpos)=(0,1)$, ou seja, que $s(\rpos)\subseteq (0,1)$ e $(0,1)\subseteq s(\rpos)$
+		
+		Tome $x\in s(\rpos)$, é fácil ver que $x>1$, pois $x$ é divisão de dois números estritamente positivos: $\dfrac{\theta^2}{\theta^2+1},\theta\in\rpos$, para provar a continência em $(0,1)$ basta provar que $x<1$. Veja que, dado $\theta>0$, temos $\dfrac{\theta^2}{\theta^2+1}=\dfrac{1}{1+1/\theta^2}<1$, ou seja, $x<1$, o que implica finalmente, que $x\in(0,1)$.
+		
+		Para provar a continência inversa, tome $x\in(0,1)$, vamos provar que $x\in s(\rpos)$ exibindo um $\theta\in\rpos$ tal que $s(\theta)=x$. Com um algebrismo simples\footnote{Não houve nenhuma divisão por zero no processo, pode confiar}, chega-se em $\theta=\left(\dfrac{x}{1-x}\right)^{1/2}\in\rpos$, veja então, que $s(\theta)=\dfrac{1}{1+1/\theta^2}=\dfrac{x}{1+(1-x)/x}=\dfrac{x^2}{x+1-x}\cdot\dfrac1x=x^2/x=x$
+		
+		Logo $(0,1)\subseteq s(\rpos)$, e portanto $(0,1)= s(\rpos)$.
+		
+		Agora resta provar que a aplicação é um difeomorfismo. A sobrejetividade já for demonstrada do fato de que $(0,1)\subseteq s(\rpos)$ que equivale à $\forall x\in(0,1),\exists \theta\in\rpos$ tal que $s(\theta)=x$.
+		
+		Para provar a injetividade, vamos pela contrapositiva da definição. $s(\theta_1)=s(\theta_2)\Rightarrow\theta_1=\theta_2$:
+		
+		\begin{align*}
+			&~s(\theta_1)=s(\theta_2)\\
+			\Rightarrow&~\dfrac{1}{1+1/\theta_1^2}=\dfrac{1}{1+1/\theta_2^2}\\
+			\Rightarrow&~1+1/\theta_1^2=1+1/\theta_2^2\\
+			\Rightarrow&~1/\theta_1^2=1/\theta_2^2\\
+			\Rightarrow&~\theta_1^2=\theta_2^2
+		\end{align*}
+	
+	Como $\theta_1,\theta_2>0$, então segue que $\theta_1=\theta_2$
+	
+	Conclui-se então que $s$ é bijetiva, e sua inversa $s^{-1}:(0,1)\to\rpos$, é dada por $s^{-1}(x)=\left(\dfrac{x}{1-x}\right)^{1/2}$.
+	
+	Vamos provar, por fim a diferenciabilidade de $s$ e $s^{-1}$.
+	
+	Tome as funções:
+	
+	\begin{align*}
+		s_1:\rpos&\to\rpos\\
+		x&\mapsto1/x^2\\
+		s_2:\rpos&\to\mathbb{R}_{>1}\\
+		x&\mapsto x+1	\\
+		s_3:\mathbb{R}_{>1}&\to(0,1)\\
+		x&\mapsto1/x\\	
+	\end{align*}
+		
+		Veja que $s(\theta)=(s_3\circ s_2 \circ s_1)(\theta)$ Sob seus domínios, todas as funções acima são diferenciáveis, omitirei a prova. Pela Regra da Cadeia\cite{lima1981curso}, a composição anterior é diferenciável $\forall \theta \in \rpos$. Podemos calcular a derivada usando regras usuais do cálculo na fórmula principal e chegamos em $s'(\theta)=\dfrac{2\theta}{(\theta^2+1)^2}$
+		
+		Pelo Corolário da Regra da Cadeia\cite{lima1981curso} que estabelece a derivada da função inversa, a função $s$ satisfaz todas as condições que implicam a diferenciabilidade de $s^{-1}$: S é diferenciável no seu domínio, $s^{-1}$ é contínua \footnote{O único ponto (real) de descontinuidade da expressão de $s^{-1}(x)=\left(\dfrac{x}{1-x}\right)^{1/2}$ seria $x=1$ que não está no domínio $(0,1)$} em todos os pontos da imagem de $s$, e $s'(\theta)>0,~\forall\theta\in\rpos$. Segue que $s^{-1}$ é diferenciável de derivada $1/s'$.
+		
+		Provamos então que $s$ é \textbf{bijetiva}, \textbf{diferenciável} e \textbf{sua inversa é diferenciável}, provando então que se trata de uma mudança de variáveis difeomorfa. $\blacksquare$
+		
+		\item Vamos usar a interpretação do termo "mudança de parâmetro" como sendo um homeomorfismo.
+		
+		Temos que provar então que $\lambda$ é bijetiva e contínua com inversa contínua.
+		
+		\textbf{(Injetividade)} Tome $t_1,t_2\in(-1,+1)$ arbitrários. Temos então,
+		
+		\begin{align}
+			&\lambda(t_1)=\lambda(t_2)\nonumber\\
+			\Rightarrow&~\tan(\pi t_1/2)=\tan(\pi t_2/2)\nonumber\\
+			\Rightarrow&~\pi t_1/2=\pi t_ 2/2\label{tan}\\
+			\Rightarrow&~ t_1 = t_2,\nonumber
+		\end{align}
+		
+		onde \ref{tan} segue da bijetividade da tangente em $\left(-\dfrac{\pi}2,\dfrac{\pi}2\right)$. Segue então que $\lambda$ é injetiva em $(-1,1)$.
+		
+		\textbf{(Sobrejetividade)} Segue da bijetividade da tangente no mapeamento $\left(-\dfrac{\pi}2,\dfrac{\pi}2\right)\to\left(-\infty,\infty\right)$, que $\forall x \in \mathbb{R}$ existe $\theta\in\left(-\dfrac{\pi}2,\dfrac{\pi}2\right)$ tal que $\tan(\theta)=x$, sendo assim, é direto que $\exists~ t\in(-1,1)$ tal que $\tan(\pi t/2)=x$.
+		
+		\textbf{(Continuidade)} A continuidade de $\lambda$ segue da continuidade da tangente. Tome $\lambda^{-1}:\mathbb{R}\to(-1,1)$ dada por $\lambda^{-1}(x)=\dfrac{2\arctan(x)}{\pi}$.
+		
+		Segue da continuidade da arco tangente que $\lambda^{-1}$ é contínua em todos os reais, pois é apenas uma multiplicação por constante.
+	\end{enumerate}
 	
 	\linesep
 	
