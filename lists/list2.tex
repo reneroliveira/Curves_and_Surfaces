@@ -146,8 +146,8 @@
 		\end{enumerate}
 	
 	\item [\sol{4}] 
-	\begin{enumerate}[\textbf{a.}]
-		\item Primeiramente precisamos mostrar que $s(\rpos)=(0,1)$, ou seja, que $s(\rpos)\subseteq (0,1)$ e $(0,1)\subseteq s(\rpos)$
+	\begin{enumerate}
+		\item [\textbf{a.}]Primeiramente precisamos mostrar que $s(\rpos)=(0,1)$, ou seja, que $s(\rpos)\subseteq (0,1)$ e $(0,1)\subseteq s(\rpos)$
 		
 		Tome $x\in s(\rpos)$, é fácil ver que $x>1$, pois $x$ é divisão de dois números estritamente positivos: $\dfrac{\theta^2}{\theta^2+1},\theta\in\rpos$, para provar a continência em $(0,1)$ basta provar que $x<1$. Veja que, dado $\theta>0$, temos $\dfrac{\theta^2}{\theta^2+1}=\dfrac{1}{1+1/\theta^2}<1$, ou seja, $x<1$, o que implica finalmente, que $x\in(0,1)$.
 		
@@ -190,7 +190,7 @@
 		
 		Provamos então que $s$ é \textbf{bijetiva}, \textbf{diferenciável} e \textbf{sua inversa é diferenciável}, provando então que se trata de uma mudança de variáveis difeomorfa. $\blacksquare$
 		
-		\item Vamos usar a interpretação do termo "mudança de parâmetro" como sendo um homeomorfismo.
+		\item [\textbf{b.}]Vamos usar a interpretação do termo "mudança de parâmetro" como sendo um homeomorfismo.
 		
 		Temos que provar então que $\lambda$ é bijetiva e contínua com inversa contínua.
 		
@@ -210,6 +210,21 @@
 		\textbf{(Continuidade)} A continuidade de $\lambda$ segue da continuidade da tangente. Tome $\lambda^{-1}:\mathbb{R}\to(-1,1)$ dada por $\lambda^{-1}(x)=\dfrac{2\arctan(x)}{\pi}$.
 		
 		Segue da continuidade da arco tangente que $\lambda^{-1}$ é contínua em todos os reais, pois é apenas uma multiplicação por constante.
+		
+		Portanto, segue que $\lambda$ é um \textbf{homeomorfismo}, como queríamos demonstrar. 
+		\item [\textbf{c.}]  Seja uma curva $\gamma:I\subset\mathbb{R}\to\mathbb{R}^n$, vamos provar que sempre existe um difeomorfismo $h:(0,1)\to I$, com $I$ aberto.
+		
+		Se $I=(a,b), ~a,b\in\mathbb{R}$, ($a<b$) a transformação linear $h(x)=x\cdot(b-a)+a$, é claramente diferenciável, de imagem $(a,b)$, e também é injetiva. A inversa $h^{-1}(x)=\dfrac{x}{b-a}-a$ também é transformação linear diferenciável. 
+		
+		Para $I=\mathbb{R}$, vimos no item anterior que $\lambda:(-1,1)\to(-\infty,+\infty)$ definida por $\lambda(t):=\tan(\pi t/2)$, é um homeomorfismo, mas na verdade vale a diferenciabilidade de $\lambda$ e $\lambda^{-1}$ sob seus respectivos domínios, logo $\lambda$ é um difeomorfismo.
+		
+		Se tomarmos o mapa difeomorfo linear $\lambda_2:(0,1)\to(-1,1)$ definido por $\lambda_2(x)=2x-1$, a composição $\lambda \circ \lambda_2$, será um difeomorfismo entre $(0,1)$ e $\mathbb{R}$
+		
+		No caso $I=(-\infty,b)$, podemos usar $\lambda:(0,1)\to(-\infty,b)$ dada por $\lambda(x)=\log(x)+b$. A imagem do logaritmo natural na restrição $(0,1)$ é $(-\infty,0)$, por isso a translação $+b$ é necessária. A prova da injetividade, sobrejetividade e diferenciabilidade segue de forma análoga ao rascunho da questão 2.
+		
+		Para $I=(a,\infty)$ podemos tomar $\lambda(x)=-\log(x)+a$, inspirando-se no caso anterior.
+		
+		
 	\end{enumerate}
 	
 	\linesep
@@ -224,13 +239,75 @@ com $t>0$ é regular e é uma reparametrização de
 $$\alpha(t)=\left(\dfrac{2\cos t}{1+\sin t},1+\sin t\right),~~t\in(-\pi/2,\pi/2)$$
 }
 
-	\item [\sol{5}]...
+	\item [\sol{5}] A derivada da curva é $\gamma'(t)=\left(2,\dfrac{-4t}{(1+t^2)^2}\right)$, que nunca será numa por conta da primeira componente constante. Logo $\gamma$ é regular.
+	
+	Para provar que $\gamma:\rpos\to\mathbb{R}^2$ é reparametrização de $\alpha:(-\pi/2,\pi/2)\to\mathbb{R}^2$, temos que provar que existe um difeomorfismo $\phi:\rpos\to(-\pi/2,\pi/2)$ tal que $\gamma(t)=\alpha(\phi(t))$.
+	
+	Se tal homeomorfismo existe, teremos:
+	
+	\begin{align*}
+		&1+\sin\phi(t)=\dfrac{2}{1+t^2}\\&\Rightarrow
+		\sin\phi(t)=\dfrac{1-t^2}{1+t^2}\\&\Rightarrow
+		\phi(t)=\arcsin\left(\dfrac{1-t^2}{1+t^2}\right)
+	\end{align*}
+	
+	Checando se $\phi$ funciona na primeira componente\footnote{Usamos $\cos(\arcsin(x))=\sqrt{1-x^2}$ que segue de Pitágoras}:
+	
+	\begin{align*}
+		&~\dfrac{2\cos\phi(t)}{1+\sin\phi(t)}\\
+		&=\dfrac{2\sqrt{1-\left(\dfrac{1-t^2}{1+t^2}\right)^2}}{1+\dfrac{1-t^2}{1+t^2}}\\
+		&=\dfrac{2\sqrt{\dfrac{(1+t^2)^2-(1-t^2)^2}{(1+t^1)^2}}}{2/(1+t^2)}\\
+		&=\sqrt{(1+t^2)^2-(1-t^2)^2}\\
+		&=\sqrt{1+2t^2+t^4-1+2t^4-t^4}\\
+		&=\sqrt{4t^2}\\
+		&=2t
+	\end{align*}
+	Que corresponde a primeira componente de $\gamma$ como esperado.
+	
+	Agora precisamos provar que $\phi$ é difeomorfismo. $\phi$ está bem definida pois $\dfrac{1-t^2}{1+t^2}$ para $t>0$ pertence ao domínio onde função arcsin é bijetiva.
+	
+	Como $1-t^2<1+t^2$ a fração é limitada por $1$. E dado que $1-t^2>-1-t^2$, tem-se $\dfrac{1-t^2}{1+t^2}>-1$.
+	
+	Para provar a bijetividade de $\phi$ basta provar que $t\mapsto\dfrac{1-t^2}{1+t^2}$ é bijetiva $\forall t \in\rpos$, pois a bijetividade do arcsin implicará na bijetividade de $\phi$.
+	
+	\textbf{(Injetividade)} Tome $t_1,t_2\in\rpos$,
+	
+	\begin{align*}
+		&~\dfrac{1-t_1^2}{1+t_1^2}=\dfrac{1-t_2^2}{1+t_2^2}\\
+		&\Rightarrow (1-t_1^2)(1+t_2^2)=(1-t_2^2)(1+t_1^2)\\
+		&\Rightarrow (1+t_2^2)-t_1^2-\bcancel{t_1^2t_2^2}=(1+t_1^2)-t_2^2-\bcancel{t_2^2t_1^2}\\
+		&\Rightarrow t_2^2-t_1^2=t_1^2-t_2^2\\
+		&\Rightarrow2t_1^2=2t_2^2\\
+		&\Rightarrow t_1=t_2
+	\end{align*} 
+
+	\textbf{(Sobrejetividade)} Tome $y\in(-1,1)$, temos que provar que $\exists t\in\rpos$ tal que $\dfrac{1-t^2}{1+t^2}=y$.
+	
+	Resolvendo para $t$, chegamos na solução (única) $t=\left(\dfrac{1-y}{1+y}\right)^{1/2}$, que está bem definida pois o radicando é sempre positivo.
+	
+	Com isso estabelecemos a \textbf{bijetividade} de $\phi$.
+	
+	Resta provar a diferenciabilidade. A função $\arcsin(x)$, é derivável em todos os pontos de seu domínio $[-1,1]$ exceto $x=-1$ e $x=1$, pois $\arcsin'(x)=1/\sqrt{1 - x^2}$. Mas restringimos o domínio de $\phi$ para $(-1,1)$, logo $\phi$ é diferenciável em todo seu domínio. 
+	
+	A diferenciabilidade de $\phi^{-1}(y)=\sin\left(\dfrac{1-y^2}{1+y^2}\right)$ segue da diferenciabilidade do seno na reta, e de $\left(\dfrac{1-y^2}{1+y^2}\right)'=\dfrac{-4y}{(1+y^2)^2}$, estar bem definida para todo $y\in(-\pi/2,\pi/2)$ pois o denominador nunca zera.
+	
+	Portando $\phi$ é um \textbf{difeomorfismo}, provando que $\gamma$ é reparametrização de $\alpha$. $\blacksquare$
 	
 	\linesep
-	
-	\item[\ex{6}] \blue{Seja $\alpha(t)=\left(\frac{1}{\sqrt3}\cos t+\frac{1}{\sqrt2}\sin t,\dfrac{1}{\sqrt3}\cos t-\dfrac{1}{\sqrt2}\sin t\right)$. Reparametrizar $\alpha$ pelo comprimento do arco.
+		
+	\item[\ex{6}] \blue{Seja $\alpha(t)=\left(\frac{1}{\sqrt3}\cos t+\frac{1}{\sqrt2}\sin t,\frac1{\sqrt3}\cos t,\frac{1}{\sqrt3}\cos t-\frac{1}{\sqrt2}\sin t\right)$. Reparametrizar $\alpha$ pelo comprimento do arco.
 	}
-	\item[\sol{6}] ...
+	\item[\sol{6}] Vamos primeiramente, encontrar a função comprimento de arco $\lcur(t)$.
+	
+	\begin{align*}
+		\displaystyle\lcur(t)&= \int_{t_0}^{t}||\alpha'(s)||ds\\
+		&=\int_{t_0}^{t}\left|\left|\dfrac{d}{dt}\left(\dfrac{1}{\sqrt3}\cos s+\dfrac{1}{\sqrt2}\sin s,\frac1{\sqrt3}\cos s,\dfrac{1}{\sqrt3}\cos s-\dfrac{1}{\sqrt2}\sin s\right)\right|\right|ds\\
+		&=\int_{t_0}^{t}\left|\left|\left(\dfrac1{\sqrt2}\cos s-\dfrac{1}{\sqrt3}\sin s,-\dfrac{1}{\sqrt3}\sin s,-\dfrac{1}{\sqrt3}\sin s-\dfrac{1}{\sqrt{2}}\cos s\right)\right|\right|ds\\
+		&=\int_{t_0}^{t}\left(\dfrac{\cos^2s}2+\dfrac{\sin^2s}3+\dfrac{\sin^2s}3+\dfrac{\cos^2s}2+\dfrac{\sin^2s}3\right)^{1/2}ds\\
+		&=\int_{t_0}^{t}\left(\cos^2 s+\sin ^2s\right)^{1/2}ds\\
+		&=\int_{t_0}^{t}ds\\
+		&=t-t_0
+	\end{align*}
 	
 	\linesep
 	
