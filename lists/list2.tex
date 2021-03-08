@@ -50,7 +50,11 @@
 		\item [\ex{1}] \blue{Desenhe em ambiente computacional, utilizando sistemas de computação simbólica, incluindo a animação do vetor tangente percorrendo as seguintes parametrizações da parábola $\alpha(t)=(t,t^2)$ e $\gamma(t) = (t^3,t^6)$. Mostre que $\alpha$ é curva regular e $\gamma$ não é regular. Qual seria a função naturalmente candidata a ser uma reparametrização entre as duas parametrizações? Porque falha?
 	}
 		
-		\item [\sol{1}] Veja que $\alpha'(t)=(1,2t^2)$ e $\gamma'(t)=(3t^2,6t^5)$. Por conta da coordenada constante, $\alpha'(t)\neq 0 ~~\forall ~t\in\mathbb{R}$, logo é regular. Já $\gamma'$ é anulada para $t=0$, logo não é regular.
+		\item [\sol{1}] 
+		
+		\href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L2_ex1.ggb}{Arquivo ggb disponível aqui.}
+		
+		Veja que $\alpha'(t)=(1,2t^2)$ e $\gamma'(t)=(3t^2,6t^5)$. Por conta da coordenada constante, $\alpha'(t)\neq 0 ~~\forall ~t\in\mathbb{R}$, logo é regular. Já $\gamma'$ é anulada para $t=0$, logo não é regular.
 		
 		Antes de definir reparametrização vamos fixar algumas coisas. Seja $I_1$ o domínio de $\alpha$ e $I_2$ o domínio de $\gamma$; Vamos considerar neste caso $I_1=I_2=\mathbb{R}$. $\gamma$ é reparametrização de $\alpha$ se existe um \textbf{difeomorfismo} $\phi:I_2\to I_1$ tal que $\gamma(t)=\alpha(\phi(t))~\forall t \in I_2$.
 		
@@ -309,17 +313,71 @@ $$\alpha(t)=\left(\dfrac{2\cos t}{1+\sin t},1+\sin t\right),~~t\in(-\pi/2,\pi/2)
 		&=t-t_0
 	\end{align*}
 	
+	No meio do cálculo, podemos ver que o módulo da velocidade é $1$, ou seja, a curva já é \textit{unit-speed}, e portanto já está parametrizada pelo comprimento de arco. Fazendo $t_0=0$ temos a reparametrização $\alpha(\lcur(t))=\alpha(t)$.
+	
 	\linesep
 	
 	\item [\ex{7}] \blue{Mostre que, se todas as retas tangentes a uma curva regular passam por um mesmo ponto $P\in\mathbb{R}^2$ , então seu traço está contido em uma reta.}
 	
-	\item[\sol{7}]...
+	\item[\sol{7}] Tome $\alpha:I\subset\mathbb{R}\to\mathbb{R}^2$ uma curva regular. Sendo regular, suponhamos sem perda de generalidade que $\alpha$ esteja parametrizada por comprimento de arco, assim $||\alpha'(t)||=1~\forall t\in I$.
+	
+	Provamos na lista passada que sob estas condições $\langle\alpha''(t),\alpha'(t)\rangle=0~\forall t\in I$.
+	
+	Seja $v(t)=\alpha'(t)$ o vetor tangente (velocidade) no ponto $t$. Uma reta tangente a curva que seja paralela a este vetor, pode ser parametrizada da forma, $\lambda v(t)+\alpha(t)$. Para todo ponto $P\in\mathbb\alpha(I)$, e para todo $t\in I$ podemos encontrar um (único) fator de escala $\lambda^*$ tal que $\lambda^*v(t)+\alpha(t)=P$ isso pois percorrendo todos $\lambda\in\mathbb{R}$ em algum momento tal escala atinge o ponto $P$.
+	
+	
+	Fixado o ponto $P$, defina:
+	
+	\begin{align*}
+		\beta:I&\to\mathbb{R}\\
+		t&\mapsto \beta(t)
+	\end{align*} 
+	onde $\beta(t)$ é o $\lambda^*$ tal que $\lambda^*v(t)+\alpha(t)=P$
+	
+	para todo $t\in I$, temos
+	
+	\begin{align}
+		&~~\beta(t)v(t)=P-\alpha(t)\nonumber\\
+		&\Rightarrow \langle\beta(t)v(t),v(t)\rangle=\langle P-\alpha(t),v(t)\rangle\nonumber\\
+		&\Rightarrow\beta(t)||v(t)||^2=\langle P-\alpha(t),v(t)\rangle\nonumber\\
+		&\Rightarrow\beta(t)v(t)=(P-\alpha(t))\langle v(t),v(t)\rangle\nonumber\\
+		&\Rightarrow\beta(t)v(t)+\alpha(t)=P\nonumber\\
+		&\Rightarrow\dfrac{d}{dt}(\beta(t)v(t)+\alpha(t))=0\nonumber\\
+		&\Rightarrow\beta'(t)v(t)+\beta(t)v'(t)+v(t)=0\label{beta}\\
+		&\Rightarrow\langle\beta'(t)v(t)+\beta(t)v'(t)+v(t),v(t)\rangle=\langle\vec 0,v(t)\rangle=0\nonumber
+	\end{align}
+
+	Pela ortoginalidade da velocidade com a aceleração, temos $\langle v(t),v'(t)\rangle=0$, assim:
+	
+	\begin{align*}
+		&\beta'(t)||v(t)||^2+1=0\\&
+		\Rightarrow \beta'(t)=-1\\&\Rightarrow
+		\beta(t)=-t+c,~c\in\mathbb{R}
+	\end{align*}
+	
+	Da linha \ref{beta}, fazendo o produto interno com $v'(t)$ e usando a ortogonalidade com a velocidade, tem-se que 
+	
+	\begin{align*}
+		&\beta(t)||v'(t)||^2=0\\
+		&\Rightarrow(-t+c)||v'(t)||^2=0\\
+	\end{align*}
+	$c$ é arbitrário, então, pode ser escolhido de tal forma que $\forall t\in I,\beta(t)\neq0$. Assim $v'(t)\equiv0\Rightarrow v(t)=c_2$ para algum $c_2\in\mathbb{R}^2$ e portanto $\alpha(t)=c_2t+c_3,\text{ com }c_3\in\mathbb{R}^2$, procando que $\alpha(I)$ pertence à uma reta. $\blacksquare$
+	
 	
 	\linesep
 	
 	\item [\ex{8}] \blue{Mostre que, se todas as retas normais a uma curva regular passam por um mesmo ponto $P\in\mathbb{R}^2$, então seu traço está contido em um círculo.}
 	
-	\item[\sol{8}]
+	\item[\sol{8}] Tome $\alpha:I\subset\mathbb{R}\to\mathbb{R}^2$ uma curva regular. Precisamos provar que $\alpha(t)$ pertence à um lugar geométrico de pontos equidistantes de um centro do plano.
+	
+	Seja $v(t)=\alpha'(t)$ o vetor tangente (velocidade) no ponto $t$. Uma reta normal à curva é paralela ao vetor aceleração $v'(t)$ e pode ser parametrizada da forma, $\lambda v'(t)+\alpha(t)$. Para todo ponto $P\in\mathbb\alpha(I)$, e para todo $t\in I$ podemos encontrar $\lambda^*$ tal que $\lambda^*v'(t)+\alpha(t)=P$.
+	
+	faz sentido conjecturar que, se todas as notmais passam por $P$ e a curva é de fato pertencente a um círculo, então $P$ é o centro desse círculo. Neste caso precisaríamos mostrar que $||\alpha(t)-P||$ é constante igual ao raio.
+	
+	Seja $\beta(t)$ definido de forma análoga ao exercício anterior, então temos $\beta(t)v'(t)+\alpha(t)=P$, que implica em $||P-\alpha(t)||=\beta(t)||v'(t)||$. Precisamos então mostrar que $||v'(t)||$ é costante.
+	
+	
+	
 	\end{enumerate}
 	
 \newpage
