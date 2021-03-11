@@ -153,7 +153,7 @@
 	\begin{enumerate}
 		\item [\textbf{a.}]Primeiramente precisamos mostrar que $s(\rpos)=(0,1)$, ou seja, que $s(\rpos)\subseteq (0,1)$ e $(0,1)\subseteq s(\rpos)$
 		
-		Tome $x\in s(\rpos)$, é fácil ver que $x>1$, pois $x$ é divisão de dois números estritamente positivos: $\dfrac{\theta^2}{\theta^2+1},\theta\in\rpos$, para provar a continência em $(0,1)$ basta provar que $x<1$. Veja que, dado $\theta>0$, temos $\dfrac{\theta^2}{\theta^2+1}=\dfrac{1}{1+1/\theta^2}<1$, ou seja, $x<1$, o que implica finalmente, que $x\in(0,1)$.
+		Tome $x\in s(\rpos)$, é fácil ver que $x>0$, pois $x$ é divisão de dois números estritamente positivos: $\dfrac{\theta^2}{\theta^2+1},\theta\in\rpos$, para provar a continência em $(0,1)$ basta provar que $x<1$. Veja que, dado $\theta>0$, temos $\dfrac{\theta^2}{\theta^2+1}=\dfrac{1}{1+1/\theta^2}<1$, ou seja, $x<1$, o que implica finalmente, que $x\in(0,1)$.
 		
 		Para provar a continência inversa, tome $x\in(0,1)$, vamos provar que $x\in s(\rpos)$ exibindo um $\theta\in\rpos$ tal que $s(\theta)=x$. Com um algebrismo simples\footnote{Não houve nenhuma divisão por zero no processo, pode confiar}, chega-se em $\theta=\left(\dfrac{x}{1-x}\right)^{1/2}\in\rpos$, veja então, que $s(\theta)=\dfrac{1}{1+1/\theta^2}=\dfrac{x}{1+(1-x)/x}=\dfrac{x^2}{x+1-x}\cdot\dfrac1x=x^2/x=x$
 		
@@ -247,7 +247,7 @@ $$\alpha(t)=\left(\dfrac{2\cos t}{1+\sin t},1+\sin t\right),~~t\in(-\pi/2,\pi/2)
 	
 	Para provar que $\gamma:\rpos\to\mathbb{R}^2$ é reparametrização de $\alpha:(-\pi/2,\pi/2)\to\mathbb{R}^2$, temos que provar que existe um difeomorfismo $\phi:\rpos\to(-\pi/2,\pi/2)$ tal que $\gamma(t)=\alpha(\phi(t))$.
 	
-	Se tal homeomorfismo existe, teremos:
+	Se tal difeomorfismo existe, teremos:
 	
 	\begin{align*}
 		&1+\sin\phi(t)=\dfrac{2}{1+t^2}\\&\Rightarrow
@@ -285,7 +285,7 @@ $$\alpha(t)=\left(\dfrac{2\cos t}{1+\sin t},1+\sin t\right),~~t\in(-\pi/2,\pi/2)
 		&\Rightarrow t_1=t_2
 	\end{align*} 
 
-	\textbf{(Sobrejetividade)} Tome $y\in(-1,1)$, temos que provar que $\exists t\in\rpos$ tal que $\dfrac{1-t^2}{1+t^2}=y$.
+	\textbf{(Sobrejetividade)} Tome $y\in(-1,1)$, temos que provar que $\exists t\in\rpos$ tal que $\frac{1-t^2}{1+t^2}=y$
 	
 	Resolvendo para $t$, chegamos na solução (única) $t=\left(\dfrac{1-y}{1+y}\right)^{1/2}$, que está bem definida pois o radicando é sempre positivo.
 	
