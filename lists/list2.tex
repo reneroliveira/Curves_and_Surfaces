@@ -374,7 +374,24 @@ $$\alpha(t)=\left(\dfrac{2\cos t}{1+\sin t},1+\sin t\right),~~t\in(-\pi/2,\pi/2)
 	
 	faz sentido conjecturar que, se todas as notmais passam por $P$ e a curva é de fato pertencente a um círculo, então $P$ é o centro desse círculo. Neste caso precisaríamos mostrar que $||\alpha(t)-P||$ é constante igual ao raio.
 	
-	Seja $\beta(t)$ definido de forma análoga ao exercício anterior, então temos $\beta(t)v'(t)+\alpha(t)=P$, que implica em $||P-\alpha(t)||=\beta(t)||v'(t)||$. Precisamos então mostrar que $||v'(t)||$ é costante.
+	Vamos então derivar $||\alpha(t)-P||$ em relação a $t$, pois se tal derivada for zero, a norma é constante. Seja então $\alpha(t)=(\alpha_1(t),\alpha_2(t))$, $v(t)=(v_1(t),v_2(t))$ $P=(P_1,P_2)$.
+	
+	\begin{align*}
+		&\dfrac{d}{dt}||\alpha(t)-P||=\\
+		&=\frac12[(\alpha_1-P_1)^2+(\alpha_2-P_2)^2]^{-\frac12}\cdot[2(\alpha_1-P_1)\cdot v_1+2(\alpha_2-P_2)\cdot v_2]\\
+	&\text{Fazendo } M=[(\alpha_1-P_1)^2+(\alpha_2-P_2)^2]^{-\frac12}:\\
+	&=\frac12M	\cdot2[(\alpha_1-P_1)\cdot v_1+(\alpha_2-P_2)\cdot v_2]\\
+	&=M(\alpha_1v_1-P_1v_1+\alpha_2v_2-P_2v_2)\\
+	&=M(\langle\alpha,v\rangle-\langle P,v\rangle)\\
+	&\text{Mas }P=\lambda^*v'+\alpha\\
+	&=M(\langle\alpha,v\rangle-\langle v,\lambda^*v'+\alpha\rangle)\\
+	&=M(\langle\alpha,v\rangle-\lambda^*\langle v,v'\rangle-\langle v,\alpha\rangle)\\
+	&\text{Como } \langle v,v'\rangle=0:\\
+	&=M(\langle\alpha,v\rangle-\langle v,\alpha\rangle)\\
+	&=0
+\end{align*}
+
+\textbf{Como queríamos demonstrar.}
 	
 	
 	
