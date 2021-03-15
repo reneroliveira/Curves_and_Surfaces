@@ -1,0 +1,229 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{fullpage}
+\usepackage{cancel}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\hypersetup{%
+	colorlinks=true,
+	linkcolor=blue,
+	linkbordercolor={0 0 1}
+}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+% Edit these as appropriate
+\newcommand\course{Rener Oliveira}
+\newcommand\lcur{\mathcal{L}}
+\newcommand{\linesep}{{\color{black} \rule{\linewidth}{0.5mm} }}
+\newcommand{\rpos}{\mathbb{R}_{>0}}
+\newcommand{\ex}[1]{\textcolor{blue}{\textbf{Exercício #1}}}
+\newcommand{\sol}[1]{\textbf{Solução #1}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
+\pagestyle{fancyplain}
+\headheight 35pt        
+\chead{\textbf{\Large Lista 3 \\ Curvas e Superfícies}}
+\rhead{\small{\course \\ \today}}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+	
+	\begin{enumerate}
+		
+		\item [\ex{1}] \textcolor{blue}{Verifique a regularidade e calcule o comprimento de arco e a curvatura das seguintes curvas, quando possível:}
+		
+		
+		\begin{itemize}
+			\blue{
+			\item (retas) $\alpha(t)=(a+ct,b+dt),t\in\mathbb{R};$}
+		
+			Verificando regularidade:
+			
+			$\alpha'(t)=(c,d)$, que é diferente do vetor nulo para todo $t$, desde que $c$ e $d$ não sejam ambos nulos, pois neste caso não se trataria de um reta, mas sim de um ponto isolado. \textbf{Logo $\alpha$ é regular.}
+		
+			
+			Calculando o comprimento de arco:
+			
+			\begin{align*}
+				\displaystyle\lcur(t)&=\int_{t_0}^t||\alpha'(u)||du\\
+				&=\int_{t_0}^t||(c,d)||du\\
+				&=\int_{t_0}^t\sqrt{c^2+d^2}du\\
+				&(t-t_0)\sqrt{c^2+d^2}
+			\end{align*}
+		
+		Para a curvatura, vamos reparametrizar $\alpha$ por $\lcur(t)$ e calcular $\kappa(s)=\det(\alpha'(s),\alpha''(s))$ após a reparametrização.
+		
+		Para facilitar as contas, façamos $t_0=0$.
+		
+		\begin{align*}
+			\alpha(\lcur(t))&=(a+ct\sqrt{c^2+d^2},b+dt\sqrt{c^2+d^2})\\
+			\alpha'(s)&=(c\sqrt{c^2+d^2},d\sqrt{c^2+d^2})\\
+			\alpha''(s)&=(0,0)\Rightarrow\\
+			\kappa(s)&=\det(\alpha',\alpha'')=0
+		\end{align*}
+		
+		\blue{
+			\item $\alpha(t)=(t,t^4),t\in\mathbb{R};$}
+		
+		Verificando regularidade:
+		
+		$\alpha'(t)=(1,4t^3)\neq0$, pois a primeira componente é constante não-nula. \textbf{Logo a curva é regular.}
+		
+		Calculando o comprimeiro de arco:
+		\begin{align*}
+			\displaystyle\lcur(t)&=\int_{t_0}^t||\alpha'(u)||du\\
+			&=\int_{t_0}^t||(1,4u^3)||du\\
+			&=\int_{t_0}^{t}\sqrt{16u^6+1}du
+		\end{align*}
+	
+		Seja $I=\int_{t_0}^{t}\sqrt{16u^6+1}du$, assim temos
+		
+		 $I'=\sqrt{16t^6+1}-\sqrt{16t_0^6+1}$ e
+		 
+		  $I''=\dfrac{48t^5}{\sqrt{16t^6+1}}$
+		  
+		 A reparametrização por comprimento de arco será $\alpha(s)=(I,I^4)$
+		 A curvatura será:
+		 
+		 \begin{align*}
+		 	\kappa(s)&=\det(\alpha'(s),\alpha''(s))\\
+		 	&=\det\left[(I',4I^3I');(I'',4I^3I''+12I^2I'I')\right]\\
+		 	&=I'(4I^3I''+12I^2I'^2)-4I^3I'I''\\
+		 	&=\cancel{4I^3I'I''}+12I'(II'')^2-\cancel{4I^3I'I''}\\
+		 	&=12I'(II'')^2
+		 \end{align*}
+	 
+	 O resultado fica em termos da integral que não consegui calcular.		
+	 
+		\blue{
+			\item (círculos) $\alpha(s)=(a+r\cdot\cos(s/r),b+r\cdot\sin(s/r)), s\in\mathbb{R},r>0;$}
+		
+		Verificando regularidade:
+		
+		$\alpha'(s)=(-r\cdot\sin(s/r)\cdot1/r,r\cdot\cos(s/r)\cdot1/r)\\=(-\sin(s/r),\cos(s/r))$
+		
+		Tal velocidade será sempre diferente do vetor nulo, pois os pontos na qual a primeira coorderada zera pertence ao conjunto $A=\{rk\pi;k\in\mathbb{Z}\}$, ou seja, os múltiplos de $0$ e $\pi$ radianos do círculo trigonométrico (ajustado por r);
+		
+		Já os pontos que a segunda componente zera pertencem à $B=\{r\pi/2+rk\pi;k\in\mathbb{Z}\}$.
+		
+		Se $s\in A$, $\alpha(s)=(0,1)$ para $k$ par e $\alpha(s)=(0,-1)$ para $k$ ímpar.
+		
+		Se $s\in B$, $\alpha(s)=(1,0)$ para $k$ par e $\alpha(s)=(-1,0)$ para $k$ ímpar.
+		
+		\textbf{Logo o círculo é regular}
+		
+		Calculando o comprimento de arco:
+		
+		\begin{align*}
+			\lcur(t)&=\int_{t_0}^{t}||\alpha'(u)||du\\
+			&=\int_{t_0}^{t}||(-\sin(u/r),\cos(u/r))||du\\
+			&=\int_{t_0}^t(\sin^2(u/r)+\cos^2(u/r))^{1/2}du\\
+			&=\int_{t_0}^tdu\\
+			&=t-t_0
+		\end{align*}
+	
+	Fazendo $t_0=0$ a fórmula original da curva já é a reparametrização por comprimento de arco.
+	
+	Calculando a curvatura:
+	
+	\begin{align*}
+		\kappa(s)&=\det(\alpha'(s),\alpha''(s))\\
+		&=\det\left[(-\sin(s/r),\cos(s/r));\frac1r(-\cos(s/r),-\sin(s/r))\right]\\
+		&=\frac1r\left[\sin^2(s/r)+\cos^2(s/r)\right]\\
+		&=\frac1r
+	\end{align*}
+
+	
+	
+		\blue{
+			\item (cardióide) $\alpha(t)=(\cos(t)\cdot(2\cos(t)-1),\sin(t)\cdot(2\cos(t)-1)),t\in\mathbb{R};$}
+		
+		Verificando regularidade:
+		
+		\begin{align*}
+			\alpha'(t)&=\left(-\sin(t)(2\cos(t)-1)-\cos(t)\cdot2\sin(t),\cos(t)(2\cos(t)-1)-\sin(t)\cdot2\sin(t)\right)\\
+			&=(-4\sin(t)\cos(t)+\sin(t),2(\cos^2(t)-\sin^2(t))-\cos(t))\\
+			&=(-2\sin(2t)+\sin(t),2\cos(2t)-\cos(t))
+		\end{align*}
+		
+		Igualando a primeira componente à zero e resolvendo para $t$. temos:
+		
+		\begin{align*}
+			&2\sin(2t)=\sin(t)\\
+			&\Rightarrow4\sin(t)\cos(t)=\sin(t)\\
+			&\Rightarrow\sin(t)=0\text{ ou }
+			4\cos(t)=1	\\
+			&\Rightarrow t=k\pi\text{ ou }t=2k\pi+\arccos(1/4)\text{ ou }t=2k\pi-\arccos(1/4)
+		\end{align*}
+	
+	No caso $t=k\pi$, a segunda componente será:
+	
+	$$2\cos(2k\pi)-\cos(k\pi)=2-1=1\text{ para k par e}$$
+	
+	$$=2-(-1)=3\text{ para k ímpar}$$
+	
+	No caso $t=2k\pi+\arccos(1/4)$, por Pitágoras\footnote{ou Relação Fundamental da Trigonometria, o que preferir.} $\sin(t)=\sqrt{1-\frac1{16}}=\dfrac{\sqrt{15}}4$, assim, a segunda componente será:
+	
+	\begin{align*}
+		&2(\cos^2(t)-\sin^2(t))-\cos(t)\\
+		&=2\left(\dfrac1{16}-\dfrac{15}{16}\right)-\dfrac14\\
+		&=2\dfrac{-14}{16}-\dfrac14\\&=-\dfrac{7}{4}-\dfrac14\\&=-2
+	\end{align*}
+
+	No último caso $t=2k\pi-\arccos(1/4)$, teremos $\sin(t)=-\dfrac{\sqrt{15}}4$ por simetria no círculo trigonométrico. Entretando o cálculo da segundo componente não muda, pois o único lugar que usa o seno, usa-o quadrático.
+	
+	Vemos então que os pontos que zeram a primeira coordenada não zeram a segunda.
+	
+	Resta verificar se os pontos que zeram a segunda componente também não zeram a segunda, se isso for provado, teremos uma curva regular.
+	
+	\textbf{Calculando o comprimento de arco}
+	
+	{\Huge{\textbf{\textit{COMPLETAR}}}}
+	
+		\blue{
+			\item (catenária) $\alpha(t)=(t,\cosh(t)),t\in\mathbb{R}$
+	}
+		\end{itemize}
+	
+		\item[\ex{2}] \textcolor{blue}{Considere a elipse $\beta(t) =(a\cos(t),b\sin(t)),t\in\mathbb{R}$, onde $a >0,~b >0$ e $a\neq b$. Obtenhaos valores de $t$ onde a curvatura de $\beta$ é máxima e mínima.}
+		
+		\item[\sol{2}] É fácil ver que $\alpha$ é regular, por argumentos que já usamos anteriormente sobre pontos onde seno e cosseno zeram. Sendo assim, a curva admite reparametrização por comprimento de arco, fazendo o vetor tangente ter norma 1. Como achei muito difícil calcular a integral da parametrização, usarei o vetor  $T(t)=\dfrac{\alpha'(t)}{||\alpha'(t)||}$ que é velocidade unitária, e assim, pela definição de curvatura de \cite{pressley2001elementary} 
+		
+		
+		incompleto por que estou perdido
+		\begin{align*}
+			\lcur(t)&=\int_{t_0}^t||(a\cos(u),b\sin(u))'||du\\
+			&=\int_{t_0}^t||(-a\sin(u),b\cos(u))||du\\
+			&=\int_{t_0}^t\left(a^2\sin(u)+b^2\cos^2(u)\right)^{\frac12}
+		\end{align*}
+		
+		
+		
+		
+		
+		
+	\end{enumerate}
+	
+	\newpage
+	
+	% \addcontentsline{toc}{section}{Referências}
+	\bibliographystyle{plain}
+	\bibliography{refs}
+\end{document}
