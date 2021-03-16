@@ -73,8 +73,8 @@
 		Para facilitar as contas, façamos $t_0=0$.
 		
 		\begin{align*}
-			\alpha(\lcur(t))&=(a+ct\sqrt{c^2+d^2},b+dt\sqrt{c^2+d^2})\\
-			\alpha'(s)&=(c\sqrt{c^2+d^2},d\sqrt{c^2+d^2})\\
+			\alpha(\lcur^{-1}(t))&=(a+ct/\sqrt{c^2+d^2},b+dt/\sqrt{c^2+d^2})\\
+			\alpha'(s)&=(c/\sqrt{c^2+d^2},d/\sqrt{c^2+d^2})\\
 			\alpha''(s)&=(0,0)\Rightarrow\\
 			\kappa(s)&=\det(\alpha',\alpha'')=0
 		\end{align*}
@@ -93,24 +93,17 @@
 			&=\int_{t_0}^{t}\sqrt{16u^6+1}du
 		\end{align*}
 	
-		Seja $I=\int_{t_0}^{t}\sqrt{16u^6+1}du$, assim temos
+		Para a curvatura vamos usar a Proposição 2.2.1 de \cite{pressley2001elementary}, que nos dá uma fórmula para curvatura de uma curva regular qualquer.
 		
-		 $I'=\sqrt{16t^6+1}-\sqrt{16t_0^6+1}$ e
-		 
-		  $I''=\dfrac{48t^5}{\sqrt{16t^6+1}}$
-		  
-		 A reparametrização por comprimento de arco será $\alpha(s)=(I,I^4)$
-		 A curvatura será:
+		
+		No nosso caso, a curvatura será:
 		 
 		 \begin{align*}
-		 	\kappa(s)&=\det(\alpha'(s),\alpha''(s))\\
-		 	&=\det\left[(I',4I^3I');(I'',4I^3I''+12I^2I'I')\right]\\
-		 	&=I'(4I^3I''+12I^2I'^2)-4I^3I'I''\\
-		 	&=\cancel{4I^3I'I''}+12I'(II'')^2-\cancel{4I^3I'I''}\\
-		 	&=12I'(II'')^2
+		 	\kappa(s)&=\dfrac{\det(\alpha'(s),\alpha''(s))}{||\alpha'(s)||^3}\\
+		 	&=\dfrac{\det[(1,4s^3);(0,12s^2)]}{(1+16s^6)^{3/2}}\\
+		 	&=\dfrac{12s^2}{(1+16s^6)^{3/2}}
 		 \end{align*}
-	 
-	 O resultado fica em termos da integral que não consegui calcular.		
+	 		
 	 
 		\blue{
 			\item (círculos) $\alpha(s)=(a+r\cdot\cos(s/r),b+r\cdot\sin(s/r)), s\in\mathbb{R},r>0;$}
@@ -139,7 +132,7 @@
 			&=t-t_0
 		\end{align*}
 	
-	Fazendo $t_0=0$ a fórmula original da curva já é a reparametrização por comprimento de arco.
+	Fazendo $t_0=0$ a fórmula original da curva já é a reparametrização por comprimento de arco, pois $\alpha(\lcur^{-1}(t))=\alpha(t)$.
 	
 	Calculando a curvatura:
 	
@@ -191,15 +184,49 @@
 	
 	Vemos então que os pontos que zeram a primeira coordenada não zeram a segunda.
 	
-	Resta verificar se os pontos que zeram a segunda componente também não zeram a segunda, se isso for provado, teremos uma curva regular.
+	Resta verificar se os pontos que zeram a segunda componente também não zeram a segunda, se isso for provado, teremos uma curva regular. Como os cálculos são um pouco complicados, provarei a regularidade de outra forma, mas não apagarei os passos acima pois deram muito trabalho.
 	
-	\textbf{Calculando o comprimento de arco}
+	Basta ver a norma da velocidade:
 	
-	{\Huge{\textbf{\textit{COMPLETAR}}}}
+	\begin{align*}
+		||\alpha'(t)||&=||(-2\sin(2t)+\sin(t),2\cos(2t)-\cos(t))||\\
+		&=\sqrt{4\sin^2(2t)+sin^2(t)-4\sin(2t)\sin(t)+4\cos^2(2t)+\cos^2(t)-4\cos(2t)\cos(t)}\\
+		&=\sqrt{4{(\sin^2(2t)+\cos^2(2t)))}+1-4(\sin(2t)\sin(t)+\cos(2t)\cos(t))}\\
+		&=\sqrt{4+1-4\cos(t)(2\sin^2(t)+\cos^2(t)-\sin^2(t))}\\
+		&=\sqrt{5-4\cos(t)(\sin^2(t)+\cos^2(t))	}\\
+		&=\sqrt{5-4\cos(t)}
+	\end{align*}
+
+	Como o cosseno varia entre -1 e 1, $||\alpha'(t)||$ vai varia entre $\sqrt1$ e $\sqrt9$, sendo assim estritamente positiva, levando-nos a colcluir, pela definição de norma, que $\alpha'(t)\neq0~\forall t \in \mathbb{R}$.\textbf{Logo a curva é regular.}
 	
+	\textbf{O comprimento de arco é:}
+	
+	\begin{align*}
+		\lcur(t)&=\int_{t_0}^{t}\sqrt{5-4\cos(u)}du\\
+	\end{align*}
+	
+	\textbf{A curvatura será:}
+	
+	\begin{align*}
+		\kappa(t)&=\dfrac{\det(\alpha'(t),\alpha''(t))}{(5-4\cos(t))^{3/2}}\\&=\dfrac{\det[(-2\sin(2t)+\sin(t),2\cos(2t)-\cos(t));(-4\cos(2t)+\cos(t),-4\sin(2t)+\sin(t))]}{(5-4\cos(t))^{3/2}}\\
+		&=\dfrac{1}{(5-4\cos(t))^{3/2}}\cdot[8\sin^2(2t)-2\sin(2t)\sin(t)-4\sin(2t)\sin(t)+\sin^2(t)\\
+		&~~~~~~~~~~~~~~~~~~~~~+8\cos^2(2t)-2\cos(2t)\cos(t)-4\cos(2t)\cos(t)+\cos^2(t)]\\
+		&=\dfrac{1}{(5-4\cos(t))^{3/2}}[8+1-6\cos(t)(2\sin^2(t)+\cos(2t))]\\
+		&=\dfrac{9-6\cos(t)}{(5-4\cos(t))^{3/2}}
+	\end{align*}
 		\blue{
 			\item (catenária) $\alpha(t)=(t,\cosh(t)),t\in\mathbb{R}$
 	}
+
+Verificando regularidade, temos $\alpha'(t)=(1,\sinh(t))\neq0~~\forall t\in\mathbb{R}$ por conta da primeira componente constante.
+
+O comprimeiro de arco será:
+
+\begin{align*}
+	\lcur(t)&=\int_{t_0}^{t}||(1,\sinh(u))||du\\
+	&=\int_ {t_0}^{t}(1+\sinh^2(u))^{1/2}du=\\
+	&=\int_ {t_0}^{t}\left(1+\sinh^2(u))du
+\end{align*}
 		\end{itemize}
 	
 		\item[\ex{2}] \textcolor{blue}{Considere a elipse $\beta(t) =(a\cos(t),b\sin(t)),t\in\mathbb{R}$, onde $a >0,~b >0$ e $a\neq b$. Obtenhaos valores de $t$ onde a curvatura de $\beta$ é máxima e mínima.}
