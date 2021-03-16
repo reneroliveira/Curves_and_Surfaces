@@ -93,7 +93,7 @@
 			&=\int_{t_0}^{t}\sqrt{16u^6+1}du
 		\end{align*}
 	
-		Para a curvatura vamos usar a Proposição 2.2.1 de \cite{pressley2001elementary}, que nos dá uma fórmula para curvatura de uma curva regular qualquer.
+		Para a curvatura vamos usar a Proposição 2.2.1 de \cite{pressley2001elementary}, que nos dá uma fórmula para curvatura de uma curva regular qualquer\footnote{Na verdade a referência usa norma no produto vetorial no numerador, que no caso é equivalente ao determinante.}.
 		
 		
 		No nosso caso, a curvatura será:
@@ -225,23 +225,113 @@ O comprimeiro de arco será:
 \begin{align*}
 	\lcur(t)&=\int_{t_0}^{t}||(1,\sinh(u))||du\\
 	&=\int_ {t_0}^{t}(1+\sinh^2(u))^{1/2}du=\\
-	&=\int_ {t_0}^{t}\left(1+\sinh^2(u))du
+	&=\int_ {t_0}^{t}\left(1+\dfrac{e^{2u}+e^{-2u}-2e^ue^{-u}}{4}\right)^{1/2}du\\
+	&=\int_{t_0}^{t}\left(\dfrac{e^{2u}+e^{-2u}}4+\dfrac12\right)^{1/2}du\\
+	&=\int_{t_0}^{t}\left[\left(\dfrac{e^u+e^{-u}}2\right)^2\right]^{1/2}du\\
+	&=\int_{t_0}^{t}\left[cosh^2(u)\right]^{1/2}du\\
+	&=\int_{t_0}^{t}\cosh(u)du\\
+	&=\sinh(t)-\sinh(t_0)
 \end{align*}
+
+
+Calculando a curvatura:
+
+\begin{align*}
+	\kappa(t)&=\dfrac{\det[(1,\sinh(t));(0,\cosh(t))]}{||(1,\sinh(t))||^3}\\
+	&=\dfrac{\cosh(t)}{[1+\sinh^2(t)]^{3/2}}\\
+	&=\dfrac{\cosh(t)}{[\cosh^2(t)]^{3/2}}\\
+	&=\dfrac{\cosh(t)}{\cosh^3(t)}\\
+	&=\dfrac{1}{\cosh^2(t)}
+\end{align*}
+
+A função acima é conhecida como $\operatorname{sech}^2(t)$ e o passo de divisão por $\cosh(t)$ que fizems é válido por nos reais, o cosseno hiperbólico é estritamente positivo. A curvatura então está bem definida.
+
+
+
+
 		\end{itemize}
 	
 		\item[\ex{2}] \textcolor{blue}{Considere a elipse $\beta(t) =(a\cos(t),b\sin(t)),t\in\mathbb{R}$, onde $a >0,~b >0$ e $a\neq b$. Obtenhaos valores de $t$ onde a curvatura de $\beta$ é máxima e mínima.}
 		
-		\item[\sol{2}] É fácil ver que $\alpha$ é regular, por argumentos que já usamos anteriormente sobre pontos onde seno e cosseno zeram. Sendo assim, a curva admite reparametrização por comprimento de arco, fazendo o vetor tangente ter norma 1. Como achei muito difícil calcular a integral da parametrização, usarei o vetor  $T(t)=\dfrac{\alpha'(t)}{||\alpha'(t)||}$ que é velocidade unitária, e assim, pela definição de curvatura de \cite{pressley2001elementary} 
+		\item[\sol{2}] É fácil ver que $\alpha$ é regular, por argumentos que já usamos anteriormente sobre pontos onde seno e cosseno zeram. Sendo assim, a curva admite reparametrização por comprimento de arco, fazendo o vetor tangente ter norma 1. Vamos calcular a curvatura pela fórmula usada anteriormente \cite{pressley2001elementary}.
 		
-		
-		incompleto por que estou perdido
 		\begin{align*}
-			\lcur(t)&=\int_{t_0}^t||(a\cos(u),b\sin(u))'||du\\
-			&=\int_{t_0}^t||(-a\sin(u),b\cos(u))||du\\
-			&=\int_{t_0}^t\left(a^2\sin(u)+b^2\cos^2(u)\right)^{\frac12}
+			\kappa_{\beta}(t)&=\dfrac{\det(\beta'(t),\beta''(t))}{||\beta'(t)||^3}\\
+			&=\dfrac{\det[(-a\sin t,b\cos t);(-a\cos t,-b\sin t)]}{||(-a\sin t,b\cos t)||^3}\\
+			&=\dfrac{ab\sin^2t+ab\cos^2t}{(a^2\sin^2t+b^2\cos^2t)^{3/2}}\\
+			&=\dfrac{ab}{(a^2\sin^2t+b^2\cos^2t)^{3/2}}
 		\end{align*}
 		
+		Como o numerador é fixo, a maximização da curvatura ocorre com a minimização do denominador e de forma análoga, a curvatura mínima ocorre quando o denominador é máximo.
 		
+		Como a função $x\mapsto x^{3/2}$ é monótona não-decrescente para $x\geq0$ e $a^2\sin^2t+b^2\cos^2t\geq0~\forall t \in\mathbb{R}$, basta maximizar/minimizar esta espressão, sem o expoente 3/2.
+		
+		Derivando, chegamos a $(a^2 - b^2) \sin(2 t)$, que se anula nos pontos do conjunto $\{k\pi/2;k\in\mathbb{Z}\}$.
+		
+		Sem perda de generalidade, consideremos $a>b$, a segunda derivada será 
+		
+		$$2(a^2-b^2)\cos(2t)$$
+		
+		Note que para $k$ par, $\cos(k\pi)=1>0$, nesses casos a concavidade do ponto $t=k\pi/2$ é "para baixo" indicando que tal ponto é ponto de mínimo do denominador, logo máximo da fração toda da curvatura.
+		
+		Analogamente, para $k$ ímpar $\cos(k\pi)=-1<0$, fazendo com que $t=k\pi/2$ sejam pontos de máximo do deniminador e mínimo para a curvatura.
+		
+		Se $a<b$, essas relações se invertem.
+		
+		Resumindo:
+		\begin{itemize}
+			\item Caso 1: $a>b$
+			\subitem Pontos de máximo de $\kappa_{\beta}(t)$: $\{k\pi/2;k\text{ é par}\}$
+			\subitem Pontos de mínimo de $\kappa_{\beta}(t)$: $\{k\pi/2;k\text{ é ímpar}\}$
+		\item Caso 2:
+		\subitem Pontos de máximo de $\kappa_{\beta}(t)$: $\{k\pi/2;k\text{ é ímpar}\}$
+		\subitem Pontos de mínimo de $\kappa_{\beta}(t)$: $\{k\pi/2;k\text{ é par}\}$
+		\end{itemize}
+		\item[\ex{3}] \textcolor{blue}{Seja $I= (-a,a),a >0$ um intervalo aberto de $\mathbb{R}$ o qual é simétrico com respeito à origem. Seja $\alpha:I\to\mathbb{R}^2$ uma curva regular parametrizada por comprimento de arco.}
+		\begin{itemize}
+			\blue{
+			\item Mostre que $\beta:I\to\mathbb{R}^2$, em que $\beta(s)=\alpha(-s)$, é uma curva regular, parametrizada por comprimento de arco e que satisfaz $\kappa_{\beta}(s) =-\kappa_{\alpha}(-s)~\forall s\in I$ (Isto é,a cur-vatura de uma curva plana muda de sinal quando se inverte a sua orientação)}
+		\textbf{Regularidade:}
+		A curva $\beta$ é uma função composta $\alpha\circ f$, com $\alpha:I\to\mathbb{R}^2$ e $f:I\to I$ dada por $f(x)=-x$. É bem fácil verificar que $f$ é diferenciável, invertível e com inversa diferenciável, omitirei esta prova aqui. 
+		
+		Usando o resultado visto em aula de que uma reparametrização defeomorfa de uma curva regular é regular, concluímos que $\beta(s)$ é regular.
+		
+		Para verificar que $\beta(s)$ está parametrizada por comprimento de arco, basta ver se a norma da velocidade é $1$. Usaremos a Regra da Cadeia.
+		
+		\begin{align*}
+			||\beta'(s)||&=\left|\left|\dfrac{d}{ds}\alpha(f(s))\right|\right|\\
+			&=||\alpha'(f(s))\cdot f'(s)||\\
+			&=||\alpha'(f(s))\cdot(-1)||\\
+			&=|-1|\cdot||\alpha'(f(s))||\\
+			&\text{Pelo fato de $\alpha$ ser \textit{unit-speed}:}\\
+			&=1\cdot1=1
+		\end{align*}
+		
+		\textbf{Inversão de sinal da Curvatura:}
+		
+		Como $\beta$ é unit-speed, a curvatura será dada pelo determinante entre os vetores velocidade e aceleração.
+		
+		\begin{align*}
+			\kappa_{\beta}(s)&=\det[\beta'(s),\beta''(s)]\\
+			&=\det[-\alpha'(-s),\alpha''(-s)]\\
+			&=-\det[\alpha'(-s),\alpha''(-s)]
+			\end{align*}
+		Onde o último passo é uma propriedade de determinantes entre vetores do plano, na qual trocar o sinal do primeiro vetor inverte o sinal do determinante.
+		
+		Pela definição de curvatura para curvas \textit{unit-speed}, a expressão final é justamente igual a $-\kappa_{\alpha}(-s)$; Fica demonstrado então que $\kappa_{\beta}(s)=\kappa_{\alpha}(-s)$.
+		
+		\item \textcolor{blue}{Desenhe em ambiente computacional um par de parametrizações de uma curva que ilustre o fato demonstrado no ítem anterior.}
+		
+		Na figura \ref{ex3}, segue um corte da animação disponível em \LARGE{LINK} da catenária restrita a um intervalo aberto.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.7]{../images/L3_ex3.png}
+			\caption{Catetária sob o intervalo (-3,3)}
+			\label{ex3}
+		\end{figure}
+		
+		\end{itemize}
 		
 		
 		
