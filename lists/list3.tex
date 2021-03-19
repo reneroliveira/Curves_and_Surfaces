@@ -29,11 +29,15 @@
 % Edit these as appropriate
 \newcommand\course{Rener Oliveira}
 \newcommand\lcur{\mathcal{L}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\rr}{\mathbb{R}^2}
+\newcommand{\rn}{\mathbb{R}^n}
 \newcommand{\linesep}{{\color{black} \rule{\linewidth}{0.5mm} }}
 \newcommand{\rpos}{\mathbb{R}_{>0}}
 \newcommand{\ex}[1]{\textcolor{blue}{\textbf{Exercício #1}}}
 \newcommand{\sol}[1]{\textbf{Solução #1}}
 \newcommand{\blue}[1]{{\color{blue}{#1}}}
+\newcommand{\bd}[1]{\boldsymbol{#1}}
 \pagestyle{fancyplain}
 \headheight 35pt        
 \chead{\textbf{\Large Lista 3 \\ Curvas e Superfícies}}
@@ -324,7 +328,7 @@ A função acima é conhecida como $\operatorname{sech}^2(t)$ e o passo de divis
 		
 		Na figura \ref{ex3}, segue um corte da animação disponível no \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L3_ex3.ggb}{GitHub} da catenária restrita a um intervalo aberto, e sua reparametrização.
 		
-		\begin{figure}
+		\begin{figure}[!htb]
 			\centering
 			\includegraphics[scale=0.7]{../images/L3_ex3.png}
 			\caption{Catetária sob o intervalo (-3,3)}
@@ -334,8 +338,144 @@ A função acima é conhecida como $\operatorname{sech}^2(t)$ e o passo de divis
 		\end{itemize}
 		
 		
-		
-		
+	\item[\ex{4}]\textcolor{blue}{
+		Considerando o conceito de derivada como aproximação linear. Considere a aplicação:}
+		\blue{
+		\begin{align*}
+			f(v)&:\rr\to\rr\\
+			(x,y)&\to (x^3+y^3,x^3-y^3)
+		\end{align*}
+	
+	determine suas derivadas $f'(v)$ e $f''(v)$
+}
+	\item[\sol{4}] Pelo jacobiano, considerando $f_1(x,y)=x^3+y^3$ e $f_2(x,y)=x^3-y^3$ a primeira derivada será:
+	
+	\begin{align*}
+		f'(v)&=\displaystyle\begin{bmatrix}
+			\dfrac{\partial f_1}{\partial x} & 
+			\dfrac{\partial f_1}{\partial y}  \\[3ex] % <-- 1ex more space between rows of matrix
+			\dfrac{\partial f_2}{\partial x} & 
+			\dfrac{\partial f_2}{\partial y} 
+		\end{bmatrix}
+	=\begin{bmatrix}
+		3x^2 & 
+		3y^2  \\[0.5ex] % <-- 1ex more space between rows of matrix
+		3x^2 & 
+		-3x^2 
+	\end{bmatrix}
+	\end{align*}
+	
+	Para a segunda derivada utilizaremos a definição de Hessiana multidimensional para funções vetoriais \cite{wiki:Hessian_matrix}, 
+	
+	\begin{align*}
+		f''(v)&=\bd{H}(f)=(\bd H (f_1),\bd H (f_2)),
+	\end{align*}
+	
+	onde, 
+	$
+		\bd H (f_1)=\begin{bmatrix}
+			\dfrac{\partial^2f_1}{\partial x^2} & 
+			\dfrac{\partial ^2f_1}{\partial x\partial y}  \\[3ex] % <-- 1ex more space between rows of matrix
+			\dfrac{\partial^2 f_1}{\partial y\partial x} & 
+			\dfrac{\partial^2 f_1}{\partial y^2}
+		\end{bmatrix} =
+	\begin{bmatrix}
+		6x & 
+		0  \\[0.5ex] % <-- 1ex more space between rows of matrix
+		0 & 
+		6y
+	\end{bmatrix},
+	$
+	e analogamente $\bd H(f_2)=\begin{bmatrix}
+		6x & 
+		0  \\[0.5ex] % <-- 1ex more space between rows of matrix
+		0 & 
+		-6y
+	\end{bmatrix}$
+
+Sendo assim, $f''(v)$ é o tensor $\left(\begin{bmatrix}
+	6x & 
+	0  \\[0.5ex] % <-- 1ex more space between rows of matrix
+	0 & 
+	6y
+\end{bmatrix},\begin{bmatrix}
+6x & 
+0  \\[0.5ex] % <-- 1ex more space between rows of matrix
+0 & 
+-6y
+\end{bmatrix}\right)$	
+	
+	\item[\ex{5}] uma aplicação $\Phi:\rr\to\rr$ é dita \textit{movimento rígido} quando preserva distâncias. Isto é:
+	
+	$$||\Phi(p)-\Phi(q)||=||p-q||$$
+	
+	Verifica-se que todo movimento rígido se escreve de forma única como composta de uma transformação linear ortogonal e uma translação, ou seja:
+	
+	$$\Phi(p)=Ap+p_0~\forall p\in\rr,$$
+	
+	em que, $A:\rr\to\rr$ é um operador linear ortogonal e $p_0$ um ponto de $\rr$. Diz-se que $\Phi$ é \textit{direto} ou \textit{inverso}, conforme $\det(A)=1$ ou $-1$ respectivamente. Verifique que $\Phi$ é diferenciável e calcule $\Phi'(p)$ e $\Phi''(p)$.
+	
+	\item[\ex{6}] \textcolor{blue}{Mostre que uma matriz de rotação e uma matriz de reflexão são aplicações linearesortogonais e, portanto, podem ser interpretadas como um movimento rígido.}
+	
+	\item[\sol{6}] Uma matriz $A\in\rn$ é ortogonal se $AA^T=I_n$ onde $I_n$ é a matriz identidade de $n$ dimensões. Considerando o $\rr$, uma matriz de rota~ção é da forma:
+	
+	$$A=\begin{bmatrix}
+		\cos \theta &-\sin\theta\\
+		\sin\theta &\cos\theta
+	\end{bmatrix},\text{ com }\theta\in\real$$
+
+	Multiplicando pela transposta temos:
+	
+	\begin{align*}
+		&~~~\,\begin{bmatrix}
+			\cos \theta &-\sin\theta\\
+			\sin\theta &\cos\theta
+		\end{bmatrix}\begin{bmatrix}
+		\cos \theta &\sin\theta\\
+		-\sin\theta &\cos\theta
+	\end{bmatrix}\\&=\begin{bmatrix}
+	\cos^2 \theta +\sin^2\theta&\cos\theta\sin\theta-\sin\theta\cos\theta\\
+	\sin\theta\cos\theta-\cos\theta\sin\theta &\sin^2\theta+\cos^2\theta
+\end{bmatrix}\\&=\begin{bmatrix}
+1 &0\\
+0 &1
+\end{bmatrix}
+	\end{align*}
+
+	Logo, uma matriz de rotação no plano é ortogonal.
+	
+	Podemos representar uma reflexão de um ponto por uma reta $L$ que faz ângulo $\theta$ com o eixo das abscissas pela matrix\cite{wiki:Rotations_and_reflections_in_two_dimensions}: 
+	
+	$$A=\begin{bmatrix}
+		\cos(2\theta)&\sin(2\theta)\\
+		\sin(2\theta)&-\cos(2\theta)
+	\end{bmatrix}$$
+
+	Note que $A=A^T$, se realmente for o caso de $A$ ser orgonal teremos $A^2=I$, que é o esperado de uma reflexão, pois se aplicada duas (ou um número par) vezes devemos voltar ao mesmo lugar. verificando então a ortoginalidade:
+	
+	\begin{align*}
+		&\begin{bmatrix}
+			\cos(2\theta)&\sin(2\theta)\\
+			\sin(2\theta)&-\cos(2\theta)
+		\end{bmatrix}\begin{bmatrix}
+		\cos(2\theta)&\sin(2\theta)\\
+		\sin(2\theta)&-\cos(2\theta)
+	\end{bmatrix}\\
+	&=\begin{bmatrix}
+		\cos^2 (2\theta) +\sin^2(2\theta)&\cos(2\theta)\sin(2\theta)-\sin(2\theta)\cos(2\theta)\\
+		\sin(2\theta)\cos(2\theta)-\cos(2\theta)\sin(2\theta) &\sin^2(2\theta)+\cos^2(2\theta)
+	\end{bmatrix}\\&=\begin{bmatrix}
+		1 &0\\
+		0 &1
+	\end{bmatrix}
+	\end{align*} 
+
+	\textbf{Q.E.D}
+
+
+	
+	
+	
 	\end{enumerate}
 	
 	\newpage
