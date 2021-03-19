@@ -474,9 +474,46 @@ Sendo assim, $f''(v)$ é o tensor $\left(\begin{bmatrix}
 
 
 	
+	\item[\ex{7}]\textcolor{blue}{Mostre que movimentos rígidos levam retas em retas e círculos em círculos.}
+	
+	\item[\sol{7}] Considerando o $\rr$, definamos retas como curvas do tipo $\alpha(t)=a_0+t\vec v,~t\in\real,~a_0\in\rr$ e $\vec v$ um vetor do plano representando a direção da reta.
+	
+	Tome $A$ uma matriz representando um operador linear ortogonal e $p_0$ um ponto do $\rr$ e defina o movimento rígido
+	
+	$$\Phi(p)=Ap+p_0$$
+	
+	Queremos provar que $\Phi(\alpha(t))$ é uma reta.
+	
+	\begin{align*}
+		\Phi(\alpha(t))&=\Phi(a_0+t\vec v)\\
+		&=A(a_0+t\vec v)+p_0\\
+		&=Aa_0+tA\vec v +p_0\\
+		&=(Aa_0+p_0)+tA\vec v
+	\end{align*}
+
+	Que é uma reta que passa pelo ponto $(Aa_0+p_0)$ e segue a direção do vetor $A\vec v$.
+	
+	Note que  $\Phi'(\alpha(t))=A\vec v$ e $\Phi''(\alpha(t))=0$, sendo assim determinante que usamos para calcular a curvatura será zero, implicando curvatura nula, que é o que caracteriza uma reta.
+	
+	\item[\ex{8}]\textcolor{blue}{Exemplifique, em ambiente computacional, movimentos rígidos sendo aplicados emuma curva de sua preferência.}
 	
 	
+	\item[\sol{8}] A curva escolhida foi uma cardióide transladada:
+	
+	\begin{align*}
+		(\cos(t)\cdot(2\cos(t)-1)\boldsymbol{+2},\sin(t)\cdot(2\cos(t)-1)),t\in\mathbb(0,2\pi)
+	\end{align*}
+
+	A matriz $A$ é tal que representa uma reflexão sobre a reta identidade, e o ponto $p_0$ é a origem. Segue na Figura \ref{ex8} um screenshot do conteúdo disponível do arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L3_ex8.ggb}{L3\_ex8.ggb}, na qual é possível personalizar a matriz ortogonal e o ponto de translação $p_0$.
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.7]{../images/L3_ex8.png}
+		\caption{Cardióide Refletida}
+		\label{ex8}
+	\end{figure}
 	\end{enumerate}
+
+
 	
 	\newpage
 	
