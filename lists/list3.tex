@@ -405,19 +405,39 @@ Sendo assim, $f''(v)$ é o tensor $\left(\begin{bmatrix}
 -6y
 \end{bmatrix}\right)$	
 	
-	\item[\ex{5}] uma aplicação $\Phi:\rr\to\rr$ é dita \textit{movimento rígido} quando preserva distâncias. Isto é:
-	
+	\item[\ex{5}] \textcolor{blue}{Uma aplicação $\Phi:\rr\to\rr$ é dita \textit{movimento rígido} quando preserva distâncias. Isto é:}
+	\blue{
 	$$||\Phi(p)-\Phi(q)||=||p-q||$$
 	
 	Verifica-se que todo movimento rígido se escreve de forma única como composta de uma transformação linear ortogonal e uma translação, ou seja:
 	
 	$$\Phi(p)=Ap+p_0~\forall p\in\rr,$$
 	
-	em que, $A:\rr\to\rr$ é um operador linear ortogonal e $p_0$ um ponto de $\rr$. Diz-se que $\Phi$ é \textit{direto} ou \textit{inverso}, conforme $\det(A)=1$ ou $-1$ respectivamente. Verifique que $\Phi$ é diferenciável e calcule $\Phi'(p)$ e $\Phi''(p)$.
+	em que, $A:\rr\to\rr$ é um operador linear ortogonal e $p_0$ um ponto de $\rr$. Diz-se que $\Phi$ é \textit{direto} ou \textit{inverso}, conforme $\det(A)=1$ ou $-1$ respectivamente. Verifique que $\Phi$ é diferenciável e calcule $\Phi'(p)$ e $\Phi''(p)$.}
+
+	\item[\sol{5}] $\Phi:\rr\to\rr$ é diferenciável se, dados $p\in\rr,~v\in\rr$, existe uma transformação linear representada pela matriz $T$, tal que 
 	
-	\item[\ex{6}] \textcolor{blue}{Mostre que uma matriz de rotação e uma matriz de reflexão são aplicações linearesortogonais e, portanto, podem ser interpretadas como um movimento rígido.}
+	$$\Phi(p+v)-\Phi(v)=Tv+r(v),\text{ onde }\lim_{v\to0}\dfrac{r(v)}{||v||}=0$$
 	
-	\item[\sol{6}] Uma matriz $A\in\rn$ é ortogonal se $AA^T=I_n$ onde $I_n$ é a matriz identidade de $n$ dimensões. Considerando o $\rr$, uma matriz de rota~ção é da forma:
+	$T$ é chamada de derivada de $\Phi$.
+	
+	Dado $\Phi(p)=Ap+p_0$, tome $T=A$, vejamos que de fato a proriedade de diferenciabilidade é satisfeita:
+	
+	\begin{align*}
+		\Phi(p+v)-\Phi(v)&=A(p+v)-Av\\
+		&=Ap+Av-Av\\
+		&=Ap´
+	\end{align*}
+
+	Como $Ap=Tp$ é direto o fato que $r(v)\equiv0$ e portanto $\lim_{v\to0}\dfrac{r(v)}{||v||}=0$
+	
+	Logo $\Phi'(p)=A$.
+	
+	Como a derivada é constante em relação à $p$, segue que $\Phi''(p)=0$.
+	
+	\item[\ex{6}] \textcolor{blue}{Mostre que uma matriz de rotação e uma matriz de reflexão são aplicações lineares e ortogonais e, portanto, podem ser interpretadas como um movimento rígido.}
+
+	\item[\sol{6}] Uma matriz $A\in\rn$ é ortogonal se $AA^T=I_n$ onde $I_n$ é a matriz identidade de $n$ dimensões. Considerando o $\rr$, uma matriz de rotação é da forma:
 	
 	$$A=\begin{bmatrix}
 		\cos \theta &-\sin\theta\\
@@ -495,7 +515,39 @@ Sendo assim, $f''(v)$ é o tensor $\left(\begin{bmatrix}
 	
 	Note que  $\Phi'(\alpha(t))=A\vec v$ e $\Phi''(\alpha(t))=0$, sendo assim determinante que usamos para calcular a curvatura será zero, implicando curvatura nula, que é o que caracteriza uma reta.
 	
-	\item[\ex{8}]\textcolor{blue}{Exemplifique, em ambiente computacional, movimentos rígidos sendo aplicados emuma curva de sua preferência.}
+	
+	Definamos agora um círculo de centro $c\in\rr$ e raio $r$ como o conjunto:
+	
+	$$S=\{q\in\rr;||q-c||=r\}$$
+	
+	Aplicando $\Phi(p)=Ap+p_0$ para cada ponto deste conjunto, tome $c^*=\Phi(c)=Ac+p_0$.
+	
+	Para cada $q\in S$, pela propriedade de preservação de distâncias de $\Phi$ temos que 
+	
+	$$||q-c||=||\Phi(q)-c^*||,$$
+	
+	ou seja os pontos de $\Phi(S)=\{\Phi(q);q\in S\}$ são equidistandes de $c^*$, resta provar que tais pontos coincidem com o círculo de raio $r$ centrado em $c^*$, ou seja:
+	
+	$$\Phi(S)=\{q^*\in\rr;||q^*-c^*||=r\}$$
+	
+	O lado $\Phi(S)\subseteq\{q^*\in\rr;||q^*-c^*||=r\}$ já mostramos no comentário acima. Resta provar o outro lado, ou seja, dado um $q^*\in\rr$ tal que $||q^*-c^*||=r$ então existe $q\in S$ tal que $\Phi(q)=q^*$.
+	
+	Como $A,p_0$ são arbitrários, mas fixos, dado um $q^*$ conforme descrito acima, tome\footnote{parece tirado da cartola, mais foi só resolver $Aq+p_0=q^*$ para $q$.} $q=A^{-1}(q^*-p_0)$, pela definição de matriz ortogonal, a inversa de $A$ existe e é igual à transposta. Assim, temos:
+	
+	\begin{align*}
+		\Phi(q)&=\Phi(A^T(q^*-p_0))\\
+		&=AA^T(q^*-p_0)+p_0\\
+		&=I(q^*-p_0)+p_0\\
+		&=q^*-p_0+p_0\\
+		&=q^*
+	\end{align*}
+
+	Logo $\Phi(S)=\{q^*\in\rr;||q^*-c^*||=r\}$
+	
+	
+	
+	
+	\item[\ex{8}]\textcolor{blue}{Exemplifique, em ambiente computacional, movimentos rígidos sendo aplicados em uma curva de sua preferência.}
 	
 	
 	\item[\sol{8}] A curva escolhida foi uma cardióide transladada:
