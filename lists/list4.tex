@@ -1,0 +1,95 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{fullpage}
+\usepackage{cancel}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\hypersetup{%
+	colorlinks=true,
+	linkcolor=blue,
+	linkbordercolor={0 0 1}
+}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+% Edit these as appropriate
+\newcommand\course{Rener Oliveira}
+\newcommand\lcur{\mathcal{L}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\rr}{\mathbb{R}^2}
+\newcommand{\rn}{\mathbb{R}^n}
+\newcommand{\linesep}{{\color{black} \rule{\linewidth}{0.5mm} }}
+\newcommand{\rpos}{\mathbb{R}_{>0}}
+\newcommand{\ex}[1]{\textcolor{blue}{\textbf{Exercício #1}}}
+\newcommand{\sol}[1]{\textbf{Solução #1}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
+\newcommand{\bd}[1]{\boldsymbol{#1}}
+\pagestyle{fancyplain}
+\headheight 35pt        
+\chead{\textbf{\Large Lista 4 \\ Curvas e Superfícies}}
+\rhead{\small{\course \\ \today}}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+	\begin{enumerate}
+		
+		\item [\ex{1}] \textcolor{blue}{Verifique se as seguintes curvas são 2-regulares:}
+		\begin{enumerate}[(a)]
+			\blue{
+			\item $\alpha(t)=(t,t^2,t^3),t\in\real$
+			}
+			
+		Veja que $\alpha'(t)=(1,2t,3t^2)$ e $\alpha''(t)=(0,2,6t)$ que é diferente do vetor nulo, para todo $t$ real por conta da componente central constante igual a $2$. Logo $\alpha$ é 2-regular.
+		
+		\blue{
+			\item $\alpha(t)=(t,t^2+2,t^3+t),t\in\real$}
+		
+		\begin{align*}
+			\alpha'(t)&=(1,2t,3t^2)\\
+			\alpha''(t)&=(0,2,6t)\neq0\forall t\in\real,
+		\end{align*}
+	logo é 2-regular
+	\end{enumerate}
+	\item[\ex{3}] \textcolor{blue}{Obtenha uma reparametrização por comprimento de arco da curva }
+	\blue{
+	$$\alpha(t)=(e^t\cos(t),e^t\sin(t),e^t),~t\in\real$$}
+	\item[\sol{3}] Encontrando a função comprimento de arco:
+	
+	\begin{align*}
+		\lcur(t)&=\int_{t_0}^{t}||\alpha'(u)||du\\
+		&=\int_{t_0}^{t}||e^u(-\sin u,\cos u,1)||du\\
+		&=\int_{t_0}^{t}e^u(\sin^2u+\cos^2u+1)^{1/2}du\\
+		&=\sqrt2\int_{t_0}^{t}e^udu\\
+		&=\sqrt2(e^t-e^{t_0})
+	\end{align*}
+		
+		Tomando os devidos cuidados com os domínios e imagens, podemos inverter a função comprimeiro de arco, fixando  gerando $\lcur^{-1}(t)=\ln\left(\dfrac{t}{\sqrt2}+e^{t_0}\right)$
+		
+		Assim, tomando $s_t=\dfrac{t}{\sqrt2}+e^{t_0}$ a reparametrização por comprimeiro de arco será:
+		
+		\begin{align*}
+			\alpha(\lcur^{-1}(t))&=s_t\left(\cos\left(s_t\right),\sin\left(s_t\right),1\right),
+		\end{align*}
+	
+	Onde está definida para valores de $t$ na qual $\dfrac{t}{\sqrt2}+e^{t_0}>0\Rightarrow t>-e^{t_0}\sqrt2$.
+	
+		
+	\end{enumerate}
+\end{document}
