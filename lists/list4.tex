@@ -85,16 +85,48 @@
 		Com isso, concluímos que $\alpha$ é 2-regular.
 	\end{enumerate}
 
-	\item[\ex{2}] \textcolor{blue}{Prove que a aplicação $\alpha(t) = (1 +\cos(t),\sin(t),2\sin(t/2),t\in\real$, é uma curva regular cujo traço está contido na interseção do cilindro $C= (x,y,z)\in\real^3; ~(x-1)^2+y^2= 1$ e da esfera $S= (x,y,z)\in\real^3;~x^2+y^2+z^2= 4$. Desenhe a curva $\alpha$, o cilindro $C$ e a esfera $S$ em ambiente computacional}
+	\item[\ex{2}] \textcolor{blue}{Prove que a aplicação $\alpha(t) = (1 +\cos(t),\sin(t),2\sin(t/2)),t\in\real$, é uma curva regular cujo traço está contido na interseção do cilindro $C= (x,y,z)\in\real^3; ~(x-1)^2+y^2= 1$ e da esfera $S= (x,y,z)\in\real^3;~x^2+y^2+z^2= 4$. Desenhe a curva $\alpha$, o cilindro $C$ e a esfera $S$ em ambiente computacional}
 	
 	\item[\sol{2}] A duas primeiras coordenadas da velocidade, a menos de sinal, são $\sin (t)$ e $\cos(t)$ que já foi provado no início da \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/lists/list3.pdf}{Lista 3} que não serão ao mesmo tempo. A terceira componente é, à menos de constantes $\cos(t/2)$. É fácil ver que ela não zera quando $\cos(t)=0$; O único problema seria com ângulos $t=\pi+2k\pi$, onde $\sin(t)=\cos(t/2)=0$, mas neste caso a componente $\cos(t)\neq0$. Podemos então assegurar que as componentes não se anulam ao memso tempo, comprovando a regularidade da curva.
 	
+	Na Figura \ref{ex2}, segue uma captura do conteúdo do arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_ex2.ggb}{L4\_ex2.ggb}. Como podemos ver, de fato o traço da curva está contido na interseção das duas superfícies, o que termina nossa demonstração.
 	\begin{figure}[!htb]
 		\centering
 		\includegraphics[scale=0.7]{../images/L4_ex2.png}
-		\caption{Catetária sob o intervalo (-3,3)}
-		\label{ex3}
+		\caption{Interseção de cilindro e esfera}
+		\label{ex2}
 	\end{figure}
+
+	Brindadeiras a parte, vamos dar a prova formal de que o traço está na interseção. O cilindro $C$ é o lugar geométrico do $\real^3$ dos pontos equidistantes (distância = 1) do eixo central, que, no caso, é dado pela reta que passa por $(1,0,0)$ paralela ao eixo $z$.
+	
+	A esfera $S$ é o lugar geométrico do espaço dos pontos que distam 2 unidades da origem $O=(0,0,0)$.
+	
+	Para provar provar que $\alpha(\real)\subset C\cap S$, basta provar que 
+	
+	$$||\alpha(t)-(1,0,0)||_*=1,\text{ e }$$
+	$$||\alpha(t)-O||=2~\forall t \in \real,$$
+	
+	onde $||.||_*$ é um operador de norma que leva em conta somente as duas primeiras componentes dados que estamos calculando distância à uma reta paralela ao eixo $z$.
+	Fazendo os cálculos, temos então:
+	
+	\begin{align*}
+		||\alpha(t)-(1,0,0)||_*&=||(1 +\cos(t),\sin(t),2\sin(t/2))-(1,0,0)||_*\\
+		&=||(\cos(t),\sin(t),2\sin(t/2))||_*\\
+		&=\sqrt{\cos^2(t)+\sin^2(t)}\\
+		&=\sqrt{1}=1
+	\end{align*}
+	
+	Provando então que o traço de $\alpha$ pertence a $C$.
+	
+	\begin{align*}
+		||\alpha(t)-O||&=||(1 +\cos(t),\sin(t),2\sin(t/2))||\\
+		&=\sqrt{1+2\cos(t)+\cos^2(t)+\sin^2(t)+4\sin^2(t/2)}\\
+		&=\sqrt{2+2\cos(t)+4\cdot\dfrac{1-\cos(t)}2}\\
+		&=\sqrt{2+\cancel{2\cos(t)}+2-\cancel{2\cos(t)}}\\
+		&=\sqrt{4}=2
+	\end{align*}
+
+	Como queríamos demonstrar.
 	\item[\ex{3}] \textcolor{blue}{Obtenha uma reparametrização por comprimento de arco da curva }
 	\blue{
 	$$\alpha(t)=(e^t\cos(t),e^t\sin(t),e^t),~t\in\real$$}
@@ -118,6 +150,31 @@
 	
 	Onde está definida para valores de $t$ na qual $\dfrac{t}{\sqrt2}+e^{t_0}>0\Rightarrow t>-e^{t_0}\sqrt2$.
 	
+	\item[\ex{4}]\textcolor{blue}{Seja $\alpha:I\to\real^3$ uma curva regular. Prove que $||\alpha'(t)||$ é constante se, e só se,$\forall t \in I, ~\alpha''(t)$ é ortogonal a $\alpha'(t)$. Em particular, mostre que $||\alpha'(t)||$ é constante para a hélice circular $\alpha(t) = (a\cos(t),a\sin(t),bt),t\in\real$.}
+	
+	\item[\sol{4}] Como a curva é regular $||\alpha'(t)||>0, ~\forall t\in I$. Dada uma constante $c\in\rpos$, temos então:
+	
+	\begin{align*}
+		||\alpha'(t)||=c&\Leftrightarrow||\alpha'(t)||^2=c^2\\
+		&\Leftrightarrow \dfrac{d}{dt}\langle\alpha',\alpha'\rangle=0\\
+		&\Leftrightarrow\langle\alpha',\alpha''\rangle+\langle\alpha'',\alpha'\rangle=0\\
+		&\Leftrightarrow2\langle\alpha',\alpha''\rangle=0\\
+		&¨\Leftrightarrow\langle\alpha',\alpha''\rangle=0
+	\end{align*}
+
+	Logo $\alpha''(t)$ é ortogonal a $\alpha'(t)$.
+	
+	Para o caso particular da hélice, temos:
+	
+	\begin{align*}
+		||\alpha'(t)||&=||(a\cos(t),a\sin(t),bt)'||\\
+		&=||(-a\sin(t),a\cos(t),b)||\\
+		&=\sqrt{a^2(\sin^2(t)+\cos^2(t))+b^2}\\
+		&=\sqrt{a^2+b^2},
+	\end{align*}
+	
+	que é constante, pois $a$ e $b$ são arbitrários, mas fixos.
+
 	\item[\ex{7}] \textcolor{blue}{Calcule a curvatura e a torção das seguintes curvas:}
 		\begin{enumerate}[(a)]
 			\blue{
@@ -163,8 +220,46 @@
 			B(s)&=T(s)\times N(s)\\&=\dfrac{1}{\sqrt2}(\sin(s/\sqrt2),-\cos(s/\sqrt2),1)
 		\end{align*}
 		\end{enumerate}
+	\item[\ex{11}]\textcolor{blue}{Verifique que o vetor binormal de uma hélice circular forma um ângulo constante como eixo do cilindro sobre o qual está a hélice. Ilustre o fato em ambiente computacional.}
 	
-		
+	\item[\sol{11}] Dada a hélice circular $\alpha(t)=(a\cos(t),a\sin(t),bt)$ com um cálulo similar ao que foi feito na questão 7, que está detalhado em \cite{ronaldo}, obtemos a seguinte reparametrização por comprimento de arco, considerando $\ell=\sqrt{a^2+b^2}$,
+	
+	\begin{align*}
+		\alpha(s)&=\left(a\cos\left(s/\ell\right),a\sin\left(s/\ell\right),bs/{\ell}\right)
+	\end{align*}
+	
+	Assim a curva fica \textit{unit-speed} e teremos:
+	
+	\begin{align*}
+		T(s)=\alpha'(s)=\dfrac1\ell(-a\sin(s/\ell),a\cos(s/\ell),b)
+	\end{align*}
+	`
+	O vetor normal $N(s)$ é o unitário da aceleração. 
+	
+	\begin{align*}
+		\alpha''(s)&=\dfrac{1}{\ell^2}(-a\cos(s/\ell),-a\sin(s/\ell),0)\\
+		||\alpha''(s)||&=\dfrac{1}{\ell^2}\sqrt{a^2}=\dfrac{|a|}{\ell^2}\\
+		N(s)&=\dfrac{\alpha''(s)}{||\alpha''(s)||}=-\dfrac{a}{|a|}(\cos(s/\ell),\sin(s/\ell),0)
+	\end{align*}
+	
+	Assim, o binormal será:
+	
+	\begin{align*}
+		B(s)&=T(s)\times N(s)\\
+		&=-\dfrac{a}{\ell|a|}(-a\sin(s/\ell),a\cos(s/\ell),b)\times(\cos(s/\ell),\sin(s/\ell),0)\\
+		&=-\dfrac{a}{\ell|a|}(-b\sin(s/\ell),b\cos(s/\ell),-a)
+	\end{align*}
+
+	Tal hélice está no cilindro de eixo $z$, queremos provar que o ângulo entre o binormal e tals eixo é constante. Tomemos o vetor $\vec v=(0,0,1)$, vamos então calcular o cosseno entre $B$ e $v$ e mostrar que é constante.
+	
+	\begin{align*}
+		\cos(B(s),\vec v)&=\dfrac{\langle B(s),\vec v\rangle}{||B(s)||\cdot||\vec v||}\\
+		&=\dfrac{a^2/\ell|a|}{||B(s)}\\
+		&=\dfrac{a^2/\ell|a|}{a/\ell|a|\cdot ||(-b\sin(s/\ell),b\cos(s/\ell),-a)||}\\
+		&=\dfrac{a^2/\ell|a|}{a/\ell|a|\cdot \sqrt{a^2+b^2}}\\
+		&=\dfrac{a}{\ell},
+	\end{align*}
+	que é contante, como queríamos demonstrar.
 	\end{enumerate}
 	\newpage
 
