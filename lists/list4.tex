@@ -207,7 +207,39 @@
 	
 	$$\tau_\alpha(t)=\dfrac{\langle(\alpha'(t)\times\alpha''(t)),\alpha'''(t)\rangle}{||\alpha'(t)\times\alpha''(t)||^2}$$}
 
-	\item[\sol{6}] Se $\alpha$ é regular, então admite 
+	\item[\sol{6}] \cite{ronaldo}Se $\alpha$ é regular, então admite reparametrização por comprimento de arco. Seja então, $\Phi:I\to I_0\in\real$, definida pelo comprimento de arco $\Phi(t)=\displaystyle\int_{t_0}^{t}||\alpha'(u)||du$, e considere sua inversa $\Phi^{-1}:I_0\to I$. Dado $t\in I$, e $s\in I_0$ tal que $\Phi(t)=s$, podemos dezer pela bijetividade provada em aula, que $\Phi^{-1}(s)=t$. Por simplificação da escrita, denotaremos $\Phi^{-1}$ por $h$.
+	
+	Tomemos a curva \textit{unit-speed}:
+	\begin{align*}
+		\beta&:I_0\to\real^3\\
+		\beta(s)&=\alpha(h(s))
+	\end{align*}
+	
+	Assim, $\alpha(t)$ pode ser escrito como $\alpha(h(\Phi(t)))=\beta(\Phi(t))$.
+	
+	A curvatura de $\alpha$ em $t$ será então a curvatura de $\beta$ em $\Phi(t)$, e como $\beta$ é \textit{unit-speed}, temos\footnote{a notação linha de derivada se refere a variável $t$}:
+	
+	\begin{align*}
+		\kappa_\alpha(t)&=\kappa_\beta(\Phi(t))\\
+		&=\left|\left|\dfrac{d^2}{dt^2}\beta(\Phi(t))\right|\right|\\
+			&=\left|\left|\dfrac{d^2}{dt^2}\alpha[h(\Phi(t))]\right|\right|\\
+			&=\left|\left|\dfrac{d}{dt}\left[\alpha'(t)h'(\Phi(t))\right]\right|\right|\\
+			&=\left|\left|\alpha''(t)h'(\Phi(t))+\alpha'(t)h''(\Phi(t))\right|\right|\\
+			&\text{Pelo Teorema da Função Inversa, $h'(t)=1/||\alpha'(t)||$}
+%		&=\det(\beta'(s),\beta''(s)), \text{onde:}\\
+%		\beta'(s)&=\dfrac{d}{dt}[\alpha(h(\Phi(t)))]\\
+%		&=\alpha'(h(s))h'(\Phi(t)) \text{ e }\\
+%		\beta''(t)&=\alpha''(h(s))(h'(s))^2+\alpha'(h(s))h''(s)
+	\end{align*}
+
+ 	Temos ainda que $h'(\Phi(t))=h'(s)=\dfrac{1}{||\alpha'(s)||}$.
+ 	
+ 	Voltando ao cálculo do determinante, pela 
+%	&=\left|\left|\dfrac{d^2}{dt^2}\beta(\Phi(t))\right|\right|\\
+%	&=\left|\left|\dfrac{d^2}{dt^2}\alpha[h(\Phi(t))]\right|\right|\\
+%	&=\left|\left|\dfrac{d}{dt}\left[\alpha'(t)h'(\Phi(t))\right]\right|\right|\\
+%	&=\left|\left|\alpha''(t)h'(\Phi(t))+\alpha'(t)h''(\Phi(t))\right|\right|\\
+%	&\text{Pelo Teorema da Função Inversa, $h'(t)=1/||\alpha'(t)||$}
 	\item[\ex{7}] \textcolor{blue}{Calcule a curvatura e a torção das seguintes curvas:}
 		\begin{enumerate}[(a)]
 			\blue{
@@ -253,9 +285,29 @@
 			B(s)&=T(s)\times N(s)\\&=\dfrac{1}{\sqrt2}(\sin(s/\sqrt2),-\cos(s/\sqrt2),1)
 		\end{align*}
 		\end{enumerate}
-	\item[\ex{11}]\textcolor{blue}{Verifique que o vetor binormal de uma hélice circular forma um ângulo constante como eixo do cilindro sobre o qual está a hélice. Ilustre o fato em ambiente computacional.}
 	
-	\item[\sol{11}] Dada a hélice circular $\alpha(t)=(a\cos(t),a\sin(t),bt)$ com um cálulo similar ao que foi feito na questão 7, que está detalhado em \cite{ronaldo}, obtemos a seguinte reparametrização por comprimento de arco, considerando $\ell=\sqrt{a^2+b^2}$,
+	\item[\ex{8}]\blue{Seja $\alpha(t)$ uma curva 2-regular:}
+	\begin{enumerate}[(a)]
+		\blue{
+		\item Verifique que $\alpha''(t)$ é paralelo ao plano osculador de $\alpha$ em $t$.}
+		
+		Seja $h$ um função de reparametrização com inversa $\lcur(t)=\displaystyle\int_{t_0}^t||\alpha'(u)||du$. Seja $\bar{a}:=\alpha()$
+		\blue{
+		\item Prove que o plano osculador de $\alpha$ em $t_0$ é dado pelos pontos $P$ de $\real^3$ tal que $\langle P-\alpha(t_0),\alpha'(t_0)\times \alpha''(t_0)\rangle=0$
+	}
+	\end{enumerate}
+	
+	\item[\ex{9}]\textcolor{blue}{Desenhe em ambiente computacional as curvas e seus planos normal e osculador em função do parâmetro:}
+	
+	\begin{enumerate}[(a)]
+		\blue{\item $\alpha(t) = (3t-t^3,3t^2,3t+t^3),t\in\real$
+		\item $(a\cos(t) +b\sin(t),a\sin(t) +b\cos(t),c\sin(2t)),t\in\real$}
+	\end{enumerate}
+
+	\item[\sol{9}] O arquivo do item (a) se encontra \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_ex9a.ggb}{neste link}, e neste outro o arquivo do  \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_exb.ggb}{item (b)}
+	\item[\ex{10}]\textcolor{blue}{Verifique que o vetor binormal de uma hélice circular forma um ângulo constante como eixo do cilindro sobre o qual está a hélice. Ilustre o fato em ambiente computacional.}
+	
+	\item[\sol{10}] Dada a hélice circular $\alpha(t)=(a\cos(t),a\sin(t),bt)$ com um cálulo similar ao que foi feito na questão 7, que está detalhado em \cite{ronaldo}, obtemos a seguinte reparametrização por comprimento de arco, considerando $\ell=\sqrt{a^2+b^2}$,
 	
 	\begin{align*}
 		\alpha(s)&=\left(a\cos\left(s/\ell\right),a\sin\left(s/\ell\right),bs/{\ell}\right)
@@ -293,9 +345,57 @@
 		&=\dfrac{a}{\ell},
 	\end{align*}
 	que é contante, como queríamos demonstrar.
+	
+	O arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_ex11.ggb}{L4\_ex11.ggb} ilustra tal fato.
+	
+	\item[\ex{11}] \blue{Prove que a aplicação 
+		$$\alpha(s)=\left(\dfrac45\cos(s),1-\sin(s),-\dfrac35\cos(s)\right),s\in\real$$
+		é uma curva regular, parametrizada por comprimento de arco, cujo traço é um círculo.Determine, então, seus centro e raio}
+	
+	\item[\sol{11}] A velocidade da curva é:
+	
+	\begin{align*}
+		\alpha'(s)&=\left(-\dfrac45\sin(s),-\cos(s),\dfrac35\sin(s)\right),
+	\end{align*}
+
+	que é formada essencialmente por senos e cossenos, que já argumentamos anteriormente que não se zeram ao mesmo tempo. Logo a curva é regular.
+	
+	A norma da velocidade é:
+	
+	\begin{align*}
+		||\alpha'(s)||&=\left|\left|\left(-\dfrac45\sin(s),-\cos(s),\dfrac35\sin(s)\right)\right|\right|\\
+		&=\sqrt{\dfrac{16}{25}\sin^2(s)+\cos^2(s)+\dfrac{9}{25}\sin^2(s)}\\
+		&=\sqrt{\sin^2(s)+\cos^2(s)}\\
+		&=1
+	\end{align*}
+
+	O que mostra que a curva está parametrizada por comprimento de arco.
+	
+	Usando a Proposição 2.3.3 de \cite{pressley2001elementary}, se provarmos que a torção é identicamente nula, a curva será plana. Bastará então provar que é um lugar geométrico de pontos equidistantes de um centro.
+	
+	Utilizando o Geogebra CAS nos cálculos, chegamos à:
+	\begin{align*}
+		T(s)&=\left(-\dfrac45\sin(s),-\cos(s),\dfrac35\sin(s)\right)\\
+		N(s)&=\left(-\dfrac45\cos(s),\sin(s),\dfrac35\cos(s)\right)\\
+		B(s)&=T(s)\times N(s)\\
+		&=\left(-\dfrac35,0,-\dfrac{4}{5}\right)
+	\end{align*}
+
+	A torção $\tau(s)$ é tal que $B'(s)=\tau(s)N(s)$, mas como $B(s)$ é constante, sua derivada é nula, implicando então $\tau(s)\equiv0$.
+	
+	Pela fórmula da curva, e pelos cálculos que fizemos, podemos desconfiar que $(0,1,0)$ é o centro do suposto círculo, pois removendo o termo 1, da expressão inicial, o calculo de distância seria análogo a norma da velocidade:
+	
+	\begin{align*}
+		||\alpha(t)-(0,1,0)||&=\left|\left|\left(\dfrac45\cos(s),1-\sin(s)-1,-\dfrac35\cos(s)\right)\right|\right|\\
+		&=\sqrt{\dfrac{16}{25}\cos^2(s)+\sin^2(s)+\dfrac{9}{25}\cos^2(s)}\\
+		&=\sqrt{\cos^2(s)+\sin^2(s)}\\
+		&=1
+	\end{align*}
+
+	o que termina a demonstração de que o traço da curva é um círculo de centro $(0,1,0)$ e raio $||\alpha(t)-(0,1,0)||=1$.
 	\end{enumerate}
 
-	O arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_ex11.ggb}{L4\_ex11.ggb} ilustra tal fato.
+	
 	\newpage
 
 % \addcontentsline{toc}{section}{Referências}
