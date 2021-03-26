@@ -4,3 +4,6 @@
 *.out
 *.blg
 *.gz
+*.pdf
+*.djvu
+*.ggb

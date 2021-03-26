@@ -174,7 +174,40 @@
 	\end{align*}
 	
 	que é constante, pois $a$ e $b$ são arbitrários, mas fixos.
+	
+	\item[\ex{5}] \textcolor{blue}{Em ambiente computacional, desenhe as seguintes curvas e produza uma animação dotriedro de Frenet de cada curva}
+	\begin{enumerate}[(a)]
+		\blue{\item $\alpha(t)=(4\cos(t),5-5\sin(t),-3\cos(t)),t\in\real$}
+		
+		A Figura \ref{ex5a} ilustra uma captura do arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_ex5a.ggb}{disponível no GitHub.} Foi incluído na construção, uma parâmetro $m$ que expande o tamanho dos vetores para facilitar a visualização. Tal arquivo também faz a reparametrização por compromentos de arco via CAS.
+		
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.7]{../images/L4_ex5a.png}
+			\caption{Triedro de Frenet expandido}
+			\label{ex5a}
+		\end{figure}
+		
+		\blue{\item $(1-\cos(t),\sin(t),t),t\in\real$}
+		
+		Na Figura \ref{ex5b}, vemos uma captura do arquivo disponível \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_ex5b.ggb}{aqui}. Que nada mais é do que a mesma construção do item anterior, alterando apenas a equação da curva.
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.7]{../images/L4_ex5b.png}
+			\caption{Triedro de Frenet expandido}
+			\label{ex5b}
+		\end{figure}
+		
+	\end{enumerate}
 
+	\item[\ex{6}] \textcolor{blue}{Seja $\alpha:I\to\real^3$ uma curva 2-regular, a qual, não é, necessariamente, parametrizada por comprimento de arco. Prove, então, que}
+	
+	\blue{
+	$$\kappa_{\alpha}(t)=\dfrac{||\alpha''(t)\times\alpha'(t)||}{||\alpha'(t)||^3}$$
+	
+	$$\tau_\alpha(t)=\dfrac{\langle(\alpha'(t)\times\alpha''(t)),\alpha'''(t)\rangle}{||\alpha'(t)\times\alpha''(t)||^2}$$}
+
+	\item[\sol{6}] Se $\alpha$ é regular, então admite 
 	\item[\ex{7}] \textcolor{blue}{Calcule a curvatura e a torção das seguintes curvas:}
 		\begin{enumerate}[(a)]
 			\blue{
@@ -261,6 +294,8 @@
 	\end{align*}
 	que é contante, como queríamos demonstrar.
 	\end{enumerate}
+
+	O arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L4_ex11.ggb}{L4\_ex11.ggb} ilustra tal fato.
 	\newpage
 
 % \addcontentsline{toc}{section}{Referências}
