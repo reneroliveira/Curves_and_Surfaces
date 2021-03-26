@@ -203,11 +203,14 @@
 	\item[\ex{6}] \textcolor{blue}{Seja $\alpha:I\to\real^3$ uma curva 2-regular, a qual, não é, necessariamente, parametrizada por comprimento de arco. Prove, então, que}
 	
 	\blue{
-	$$\kappa_{\alpha}(t)=\dfrac{||\alpha''(t)\times\alpha'(t)||}{||\alpha'(t)||^3}$$
+	$$\kappa_{\alpha}(t)=\dfrac{||\alpha'(t)\times\alpha''(t)||}{||\alpha'(t)||^3}$$
 	
 	$$\tau_\alpha(t)=\dfrac{\langle(\alpha'(t)\times\alpha''(t)),\alpha'''(t)\rangle}{||\alpha'(t)\times\alpha''(t)||^2}$$}
 
-	\item[\sol{6}] \cite{ronaldo}Se $\alpha$ é regular, então admite reparametrização por comprimento de arco. Seja então, $\Phi:I\to I_0\in\real$, definida pelo comprimento de arco $\Phi(t)=\displaystyle\int_{t_0}^{t}||\alpha'(u)||du$, e considere sua inversa $\Phi^{-1}:I_0\to I$. Dado $t\in I$, e $s\in I_0$ tal que $\Phi(t)=s$, podemos dezer pela bijetividade provada em aula, que $\Phi^{-1}(s)=t$. Por simplificação da escrita, denotaremos $\Phi^{-1}$ por $h$.
+	\item[\sol{6}] 
+	Para a curvatura, seguirei uma demonstração similar a do Teorema 154 desta referencia\footnote{\url{https://ksuweb.kennesaw.edu/~plaval/math2203/curvature.pdf}}
+	Se $\alpha$ é regular, então admite reparametrização por comprimento de arco. Seja então, $\Phi:I\to I_0\in\real$, definida pelo comprimento de arco $\Phi(t)=\displaystyle\int_{t_0}^{t}||\alpha'(u)||du$, e considere sua inversa $\Phi^{-1}:I_0\to I$. Dado $t\in I$, e $s\in I_0$ tal que $\Phi(t)=s$, podemos dezer pela bijetividade provada em aula, que $\Phi^{-1}(s)=t$. Por simplificação da escrita, denotaremos $\Phi^{-1}$ por $h$.
+	
 	
 	Tomemos a curva \textit{unit-speed}:
 	\begin{align*}
@@ -215,26 +218,83 @@
 		\beta(s)&=\alpha(h(s))
 	\end{align*}
 	
-	Assim, $\alpha(t)$ pode ser escrito como $\alpha(h(\Phi(t)))=\beta(\Phi(t))$.
-	
-	A curvatura de $\alpha$ em $t$ será então a curvatura de $\beta$ em $\Phi(t)$, e como $\beta$ é \textit{unit-speed}, temos\footnote{a notação linha de derivada se refere a variável $t$}:
+	Assim, $\alpha(t)$ pode ser escrito como $\alpha(h(\Phi(t)))=\beta(\Phi(t))$. Por simplicidade de notação, vamos usar simplesmente $\alpha(t)=\beta(s)$. 
+	A curvatura de $\alpha$ em $t$ será então a curvatura de $\beta$ em $s=\Phi(t)$, e como $\beta$ é \textit{unit-speed}, temos:
 	
 	\begin{align*}
-		\kappa_\alpha(t)&=\kappa_\beta(\Phi(t))\\
-		&=\left|\left|\dfrac{d^2}{dt^2}\beta(\Phi(t))\right|\right|\\
-			&=\left|\left|\dfrac{d^2}{dt^2}\alpha[h(\Phi(t))]\right|\right|\\
-			&=\left|\left|\dfrac{d}{dt}\left[\alpha'(t)h'(\Phi(t))\right]\right|\right|\\
-			&=\left|\left|\alpha''(t)h'(\Phi(t))+\alpha'(t)h''(\Phi(t))\right|\right|\\
-			&\text{Pelo Teorema da Função Inversa, $h'(t)=1/||\alpha'(t)||$}
+		\kappa_\beta(s)=||\frac{d}{ds}T_\beta(s)||,\\
+	\end{align*}
+	
+	Onde $T_\beta(s)$ é o vetor tangente de $\beta$ em relação a $s$.
+	
+	Derivando $T_\beta$ em relação a $t$ pela regra da cadeia, temos, e pelo teorema fundamental do cálculo, temos
+	
+	$$\dfrac{dT_\beta(s)}{dt}=\dfrac{dT_\beta}{ds}\dfrac{ds}{dt}=\dfrac{dT_\beta}{ds}||\alpha'(t)||$$,
+	
+	Com isso, isolando $dT_\beta/ds$ temos uma nova expressão para a curvatura:
+	
+	\begin{align}\kappa_\beta(s)=\left|\left|\dfrac{dT_\beta/dt}{||\alpha'(t)||}\right|\right|=\dfrac{||T'_\beta||}{||\alpha'(t)||}\label{curvature}
+	\end{align}
+	
+	Não irei demonstrar aqui, mas é possível escrever $T_\beta(s)$ como $\dfrac{\alpha'(t)}{||\alpha'(t)||}$. O que faremos agora é derivar $\alpha'$ e $\alpha''$ e escrevê-los en função de $T_\beta$ e $T'_\beta$ para demonstrar a fórmula geral da curvatura. Usaremos tambpem que $||\alpha'(t)||=\dfrac{ds}{dt}$
+	
+	\begin{align*}
+		\alpha'(t)&=T_\beta||\alpha'(t)||=\dfrac{ds}{dt}T_\beta\\
+		\alpha''(t)&=\dfrac{d}{dt}\left(\dfrac{ds}{dt}T_\beta\right)=\dfrac{d^2s}{dt^2}T_\beta+\dfrac{ds}{dt}T'_\beta
+	\end{align*}
+
+	Assim,
+	
+	\begin{align*}
+		\alpha'(t)\times\alpha''(t)&=\dfrac{ds}{dt}T_\beta\times\left(\dfrac{d^2s}{dt^2}T_\beta+\dfrac{ds}{dt}T'_\beta\right)\\
+		&=\dfrac{ds}{dt}\dfrac{d^2s}{dt^2}(T_\beta\times T_\beta)+\left(\dfrac{ds}{dt}\right)^2(T_\beta\times T'_\beta)
+	\end{align*}
+
+	Uma propriedade de produto vetorial diz que a operação tomada em vetores paralelos é nula, logo $T_\beta\times T_\beta=0$, e teremos:
+	
+	\begin{align}\alpha'(t)\times\alpha''(t)=\left(\dfrac{ds}{dt}\right)^2(T_\beta\times T'_\beta)\label{cross}\end{align}
+	
+	Tomando a norma, temos:
+	
+	\begin{align*}
+		||\alpha'(t)\times\alpha''(t)||&=\left(\dfrac{ds}{dt}\right)^2\left|\left|T_\beta\times T'_\beta\right|\right|\\
+		&=\left(\dfrac{ds}{dt}\right)^2||T_\beta||\cdot||T'_\beta||\sin\theta,
+	\end{align*}
+
+	onde $\theta$ é o ângulo formado pelos vetores $T_\beta$ e $T'_\beta$. Mas pelo exercício 4, como $\beta$ é \textit{unit-speed}, os vetores são ortogonais, logo, $\sin\theta=1$. Além disso, $||T_\beta||=1$, o que nos dá:
+	
+	\begin{align*}
+		||\alpha'(t)\times\alpha''(t)||&=\left(\dfrac{ds}{dt}\right)^2||T'_\beta||\\
+		&=||\alpha'(t)||^2||T'_\beta||
+	\end{align*}
+
+	Dessa forma, $||T'_\beta||=\dfrac{||\alpha'(t)\times\alpha''(t)||}{||\alpha'(t)||^2}$, mas de \ref{curvature}, temos:
+	
+	\begin{align}
+		\kappa_{\beta}=\dfrac{||T'_\beta||}{||\alpha'(t)||},\label{curv2}
+	\end{align}	
+	O que nos leva finalmente à conclusão:
+	
+	\begin{align*}
+		\kappa_{\alpha}(t)=\kappa_{\beta}(s)=\dfrac{||\alpha'(t)\times\alpha''(t)||}{||\alpha'(t)||^3}
+	\end{align*}
+%	
+%	\begin{align*}
+%		\kappa_\alpha(t)&=\kappa_\beta(\Phi(t))\\
+%		&=\left|\left|\dfrac{d^2}{dt^2}\beta(\Phi(t))\right|\right|\\
+%			&=\left|\left|\dfrac{d^2}{dt^2}\alpha[h(\Phi(t))]\right|\right|\\
+%			&=\left|\left|\dfrac{d}{dt}\left[\alpha'(t)h'(\Phi(t))\right]\right|\right|\\
+%			&=\left|\left|\alpha''(t)h'(\Phi(t))+\alpha'(t)h''(\Phi(t))\right|\right|\\
+%			&\text{Pelo Teorema da Função Inversa, $h'(t)=1/||\alpha'(t)||$}
 %		&=\det(\beta'(s),\beta''(s)), \text{onde:}\\
 %		\beta'(s)&=\dfrac{d}{dt}[\alpha(h(\Phi(t)))]\\
 %		&=\alpha'(h(s))h'(\Phi(t)) \text{ e }\\
 %		\beta''(t)&=\alpha''(h(s))(h'(s))^2+\alpha'(h(s))h''(s)
-	\end{align*}
+%	\end{align*}
 
- 	Temos ainda que $h'(\Phi(t))=h'(s)=\dfrac{1}{||\alpha'(s)||}$.
- 	
- 	Voltando ao cálculo do determinante, pela 
+% 	Temos ainda que $h'(\Phi(t))=h'(s)=\dfrac{1}{||\alpha'(s)||}$.
+% 	
+% 	Voltando ao cálculo do determinante, pela 
 %	&=\left|\left|\dfrac{d^2}{dt^2}\beta(\Phi(t))\right|\right|\\
 %	&=\left|\left|\dfrac{d^2}{dt^2}\alpha[h(\Phi(t))]\right|\right|\\
 %	&=\left|\left|\dfrac{d}{dt}\left[\alpha'(t)h'(\Phi(t))\right]\right|\right|\\
@@ -291,10 +351,34 @@
 		\blue{
 		\item Verifique que $\alpha''(t)$ é paralelo ao plano osculador de $\alpha$ em $t$.}
 		
-		Seja $h$ um função de reparametrização com inversa $\lcur(t)=\displaystyle\int_{t_0}^t||\alpha'(u)||du$. Seja $\bar{a}:=\alpha()$
+		Utilizando as mesmas notações e definições da questão 6, foi concluído que:
+		
+		\begin{align}
+			\alpha''(t)=\dfrac{d^2s}{dt^2}T_\beta+\dfrac{ds}{dt}T'_\beta\label{alp}
+		\end{align}	
+		
+		O plano osculador de $\alpha$ em $t$ é o plano gerado pelos vetores $T_\beta(s)$ e $N_\beta(s)=\dfrac{T'_\beta}{||T'_\beta||}$.
+		
+		Além disso, temos que $\dfrac{ds}{dt}=||\alpha'(t)||$ e $\dfrac{d^2s}{dt}=\dfrac{d}{dt}||\alpha'(t)||$. Podemos entender a norma da velocidade com uma função $I\to\real^+$, assim sua derivada em relação a $t$ será uma função escalar.
+		
+		Dessa forma, pela expressão \ref{alp}, $\alpha''$ é uma combinação linar dos vetores $T_\beta$ e $N_\beta$, implicando que pertence ao plano osculador, que é gerado por esses dois vetores.
 		\blue{
 		\item Prove que o plano osculador de $\alpha$ em $t_0$ é dado pelos pontos $P$ de $\real^3$ tal que $\langle P-\alpha(t_0),\alpha'(t_0)\times \alpha''(t_0)\rangle=0$
 	}
+
+	De \ref{cross}, temos:
+	
+	$$\alpha'(t_0)\times\alpha''(t_0)=\left(\dfrac{ds}{dt}(t_0)\right)^2(T_\beta(s_0)\times T'_\beta(s_0)),$$
+	
+	onde $\Phi(t_0)=s_0$. Assim o produto vetorial acima é dedo por 
+	
+	\begin{align}\alpha'(t_0)\times\alpha''(t_0)=||\alpha'(t_0)||^2(T_\beta(s_0)\times T'_\beta(s_0))\label{cross2}\end{align}
+	
+	Como $T_\beta$ e $T'_\beta$ são ortogonais, juntando com o vetor $T_\beta\times T'_\beta$, temos uma tripla ortogonal, onde $T_\beta\times T'_\beta$ é múltiplo do vetor binormal. Como o plano osculador de $\alpha$ em $t_0$ é dado pelo plano que passa em $\alpha(t_0)$ cujo vetor normal é o binormal, todos os vetores $P-\alpha(t_0)$ desse plano serão ortogonais ao binormal, que é paralelo à $\alpha'(t_0)\times\alpha''(t_0)$ pela expressão \ref{cross2}. Portanto, $(P-\alpha(t_0))\perp(\alpha'(t_0)\times\alpha''(t_0))$, ou seja,
+	
+	$$\langle P-\alpha(t_0),\alpha'(t_0)\times \alpha''(t_0)\rangle=0$$
+	
+	Como queríamos demonstrar.
 	\end{enumerate}
 	
 	\item[\ex{9}]\textcolor{blue}{Desenhe em ambiente computacional as curvas e seus planos normal e osculador em função do parâmetro:}
