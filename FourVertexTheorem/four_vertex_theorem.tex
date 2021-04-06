@@ -1,0 +1,81 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{fullpage}
+\usepackage{cancel}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\bibliography{../lists/refs}
+%\usepackage[backend=bibtex]{biblatex}
+%\bibliography{../lists/refs}
+
+\hypersetup{%
+	colorlinks=true,
+	linkcolor=blue,
+	linkbordercolor={0 0 1}
+}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+% Edit these as appropriate
+\newcommand\course{Rener Oliveira}
+\newcommand\lcur{\mathcal{L}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\rr}{\mathbb{R}^2}
+\newcommand{\rn}{\mathbb{R}^n}
+\newcommand{\linesep}{{\color{black} \rule{\linewidth}{0.5mm} }}
+\newcommand{\rpos}{\mathbb{R}_{>0}}
+\newcommand{\ex}[1]{\textcolor{blue}{\textbf{Exercício #1}}}
+\newcommand{\sol}[1]{\textbf{Solução #1}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
+\newcommand{\bd}[1]{\boldsymbol{#1}}
+\pagestyle{fancyplain}
+\headheight 35pt        
+\chead{\textbf{\Large Teorema dos 4 Vértices}}
+\lhead{Curvas e Superfícies\\
+Trabalho A1}
+\rhead{\small{\course \\ \today}}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+
+\begin{document}
+%	\tableofcontents
+	\newpage
+	\section{Curvatura com Sinal}
+	
+	Antes de prosseguirmos com o teorema, vamos definir curvatura com sinal.
+	
+	Dada um curva plana $\gamma:I\subset\real\to\rr$, com $I$ aberto, curva regular e \textit{unit-speed}, considere o vetor tangente (unitário), $T(s)=\dfrac{d\gamma}{ds}$.
+	
+	Seja $N$ o vetor normal à curva, unitário, obtido à partir de uma rotação de 90 graus no sentido horário de $T$.
+	
+	Pela Proposição 1.2.4 de \cite{pressley2001elementary}, ou pelo Exercício 7 da \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/lists/list1.pdf}{Lista 1}, o vetor $T'(s)=\dfrac{dT(s)}{ds}$ é ortogonal a $T(s)$.
+	
+	Desse forma $T'//N$, definimos então a curvatura com sinal, como sendo o múltiplo $\kappa_s$ tal que 
+	
+	$$T'=\kappa_sN$$
+	
+	No caso em que $\gamma$ não é \textit{unit-speed}, considere $J\subset\real$ um intervalo de reparametrização obtido pela função $h:I\to J$, via $h(t)=\int_{t_0}^t||\gamma'(u)||du$. Para simplificar a notação, considere $h(t)=s$.
+	
+	Seja $\overline{\gamma}(s)$
+	
+	\newpage
+	\addcontentsline{toc}{section}{Referências}
+	\printbibliography
+\end{document}
