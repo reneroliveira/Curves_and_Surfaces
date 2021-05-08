@@ -32,12 +32,18 @@
 \newcommand{\real}{\mathbb{R}}
 \newcommand{\rr}{\mathbb{R}^2}
 \newcommand{\rn}{\mathbb{R}^n}
+%\newcommand{\rm}{\mathbb{R}^m}
 \newcommand{\linesep}{{\color{black} \rule{\linewidth}{0.5mm} }}
 \newcommand{\rpos}{\mathbb{R}_{>0}}
 \newcommand{\ex}[1]{\textcolor{blue}{\textbf{Exercício #1}}}
 \newcommand{\sol}[1]{\textbf{Solução #1}}
 \newcommand{\blue}[1]{{\color{blue}{#1}}}
 \newcommand{\bd}[1]{\boldsymbol{#1}}
+\newcommand{\op}[1]{\operatorname{#1}}
+\renewcommand{\ker}[1]{\operatorname{Ker}(#1)}
+\newcommand{\rk}[1]{\operatorname{rank}(#1)}
+\renewcommand{\dim}[1]{\operatorname{dim}(#1)}
+
 \pagestyle{fancyplain}
 \headheight 35pt        
 \chead{\textbf{\Large Lista 5 \\ Curvas e Superfícies}}
@@ -54,10 +60,106 @@
 \begin{document}
 %	\pagecolor{black}
 %	\color{white}
-	\ex{1} Seja $F : \rr\to\real^3$ uma aplicação linear. Mostre que: $F$ é injetora se, e só se, a imagem da base canônica de $\rr$ forma um conjunto de vetores linearmente independentes de $\real^3$ ou, equivalentemente, se a matriz associada de $F$ tem posto 2. (obs.: Repare que	este resultado está sendo usado para o conceito de superfície regular descrito acima).
+	\ex{1}\blue{ Seja $F : \rr\to\real^3$ uma aplicação linear. Mostre que: $F$ é injetora se, e só se, a imagem da base canônica de $\rr$ forma um conjunto de vetores linearmente independentes de $\real^3$ ou, equivalentemente, se a matriz associada de $F$ tem posto 2. (obs.: Repare que	este resultado está sendo usado para o conceito de superfície regular descrito acima).}
 	
-%	\newpage
-	% \addcontentsline{toc}{section}{Referências}
-%	\bibliographystyle{plain}
-%	\bibliography{refs}
+	\sol{1} De forma geral, seja $F:\real^m\to\real^n$ um aplicação linear.
+	
+	$(\Rightarrow)$ Suponha injetividade de $F$, isto é, $\forall x,y \in\real^m$, $x\neq y\Rightarrow Fx\neq Fy$.\footnote{Abusando um pouco da notação, usamos $F$ para representar tanto a aplicação quanto à sua matriz associada}
+	
+	Queremos provar que a matriz $F$ tem posto $m$ ($\op{rank}(F)=m$). Usando o Teorema do Posto-Nulidade\cite{wolfram:ranknullity}, temos:
+	
+	$$\dim{\real^m}=m=\rk{F}+\dim{\ker F},$$
+	
+	onde $\ker{F}:=\{x\in\real^m;Fx=0\}$. Assim, basta provar que a dimensão do núcleo é 0, e teremos o resultado.
+	
+	Trivialmente, se $x\in\real^m$ é tal que $x=0$, então $x\in\ker F$. Suponha, por contradição, que $\exists x\in\real^m,x\neq 0$ tal que $x\in\ker F$, assim $Fx=0$. Mas pela injetividade, $x \neq 0\Rightarrow Fx\neq F0=0$, absurdo. Logo $\ker F = {0}$, que tem dimensão 0. Portanto,
+	
+	$$\rk F =m$$
+	
+	$(\Leftarrow)$ Seja $\{e_1,e_2,\ldots,e_m\}$ a base canônica de $\real^m$ e considere sua imagem $\{Fe_1,Fe_2,\ldots,Fe_m\}$ linearmente independente, ou seja, a equação
+	
+	$$\alpha_1Fe_1+\alpha_2Fe_2+\ldots+\alpha_mFe_m=0$$
+	
+	só possui solução trivial $\alpha_1=\alpha_2=\ldots=\alpha_m=0$.
+	
+	Queremos provar a injetividade de $F$, ou seja $\forall x,y\in\real^m, Fx=Fy\Rightarrow x=y$.
+	
+	Tome $x=(x_1,x_2,\ldots,x_m)^T$ e $y=(y_1,y_2,\ldots,y_m)^T$ vetores arbitrários de $\real^m$. Podemos escrever
+	 $x=\displaystyle\sum_{i=1}^mx_ie_i$ e $y=\displaystyle\sum_{i=1}^my_ie_i$. Considerando $Fx=Fy$, temos:
+	 
+	 \begin{align}
+	 	Fx=Fy&\Rightarrow F\displaystyle\sum_{i=1}^mx_ie_i=F\sum_{i=1}^my_ie_i\nonumber\\
+	 	&\Rightarrow\displaystyle\sum_{i=1}^mFx_ie_i=\sum_{i=1}^mFy_ie_i\nonumber\\
+	 	&\Rightarrow\displaystyle\sum_{i=1}^mx_iFe_i=\sum_{i=1}^my_iFe_i\nonumber\\
+	 	&\Rightarrow\displaystyle\sum_{i=1}^m(x_i-y_i)Fe_i=0\nonumber\\
+	 	&\Rightarrow x_i-y_i = 0\text{ para }i=1,2,\ldots,m\label{xy}\\
+	 	&\Rightarrow x_i=y_i\nonumber\\
+	 	&\Rightarrow x=y\nonumber
+	 \end{align}
+ 
+ onde a passagem \ref{xy} usa o fato de $\sum_{i=1}^m\alpha_iFe_i=0$ só possui solução trivial fazendo $\alpha_i=x_i-y_i$. As passagens acima usam a linearidade de $F$ e manipulações simples.
+ 
+ Prova-se então que $F$ é injetiva.
+ 
+ \ex{2} \blue{Mostre que o paraboloide hiperbólico $S = \{(x, y, z) \in\real^3; z = x^2 - y^2\}$ é uma \textit{superfície regular}. Desenhe o paraboloide em um ambiente gráfico juntamente com o plano tangente e um vetor normal à superfície. Faça o desenho de forma a poder variar o	ponto aonde o plano tangente é exibido.}
+ 
+ \sol{2}  Dado que $z=x^2-y^2=(x+y)(x-y)$, podemos propor uma parametrização única para $S$, resolvendo $u=x+y,v=x-y$ para $x$ e $y$:
+ 
+ \begin{align*}
+ 	\sigma:\rr&\to\real^3\\
+ 	(u,v)&\mapsto \left(\frac{u+v}2,\frac{u-v}2,uv\right)
+ \end{align*}
+ 
+ Não provaremos formalmente que $S$ satisfaz de fato a definição de superfície com a parametrização acima, vamos direto para a prova da regularidade.
+ 
+ Queremos provar que a matriz Jacobiana de $\sigma$ tem posto 2, ou ainda, que o produto vetorial $\dfrac{\partial \sigma}{\partial u}(q)\times \dfrac{\partial \sigma}{\partial v}(q)\neq(0,0,0)$ para todo $q\in\rr$.
+ 
+ \begin{align*}
+ 	\dfrac{\partial \sigma}{\partial u}\times \dfrac{\partial \sigma}{\partial v}&=(1/2,1/2,v)\times(1/2,-1/2,u)\\
+ 	&=\left(\frac{u+v}2,\frac{v-u}2,-1/2\right)
+ \end{align*}
+
+ que é sempre diferente do vetor nulo, devido à última coordenada constante.
+ 
+ \ex{3} \blue{Mostre que, se $f(u, v)$ é uma função real diferenciável, onde $(u, v)\in U$, aberto de $\rr$, então a aplicação $X(u, v) = (u, v, f(u ,v))$ é uma \textit{superfície parametrizada regular}, que descreve o gráfico da função $f$.}
+ 
+ 
+ \sol{3} Se $f$ é diferenciável, as derivadas parciais $f_u$ e $f_v$ existem. Para provar a regularidade da superfície, provando que a Jacobiana da aplicação $X:\rr\to\real^3$ tem posto 2, no caso, que as derivadas parciais de $X$ são linearmente independentes.
+ 
+ \begin{align*}
+	\dfrac{\partial X}{\partial u}\times \dfrac{\partial X}{\partial v}&=(1,0,f_u)\times(0,1,f_v)\\&=(-f_u,-f_v,1)
+ \end{align*}
+
+ que é sempre diferente do vetor nulo, devido à última coordenada constante.
+
+ 
+ \ex{4} \blue{Considere o \textit{hiperbolóide de uma folha}
+ 	
+ $$S:=\{(x,y,z)\in\real^3:x^2+y^2-z^2=1\} $$
+ 
+ Mostre que, para todo $\theta$, a reta
+ 
+ $$(x-z)\cos\theta=(1-y)\sin\theta,~(x+z)\sin\theta=(1+y)\cos\theta$$
+ 
+ está contida em $S$, e que, todo ponto do hiperboloide está em alguma dessas linhas. Desenhe o hiperbolóide e as linhas em um ambiente gráfico. Deduza que a superfície pode ser coberta por uma única parametrização.
+}
+
+ \sol{4} test4
+ 
+ \ex{5} \blue{
+ Considere uma curva regular $\alpha(s)=(x(s),y(s),z(s)),s\in I\subset\real$. Seja o subconjunto de $\real^3$ gerado pelas retas que passam por $\alpha(s)$, paralelas ao eixo $O_z$. Dê uma condição suficiente que deve satisfazer a curva para que $S$ seja o traço de uma \textit{superfície parametrizada regular}.
+ }
+
+\sol{5} teste5
+
+\ex{6}\blue{\textbf{ (Extra)} Mostre que o cilindro circular
+
+$$S:=\{(x,y,z)\in\real^3:x^2+y^2=1\}$$
+
+pode ser descrito por uma parametrização global, isto é, que existe um atlas composto só por uma única carta.
+}
+	\newpage
+%	 \addcontentsline{toc}{section}{Referências}
+	\bibliographystyle{plain}
+	\bibliography{refs}
 \end{document}
