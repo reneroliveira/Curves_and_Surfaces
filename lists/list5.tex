@@ -54,9 +54,9 @@
 \headsep 1.5em
 
 \usepackage{xcolor}
-\pagecolor[rgb]{0.0,0.0,0.0} %black
-
-\color[rgb]{1,1,1} %grey
+%\pagecolor[rgb]{0.0,0.0,0.0} %black
+%
+%\color[rgb]{1,1,1} %grey
 \begin{document}
 %	\pagecolor{black}
 %	\color{white}
@@ -121,6 +121,8 @@
 
  que é sempre diferente do vetor nulo, devido à última coordenada constante. O desenho/animação no Geogebra 5.0 está disponível no arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L5_ex2.ggb}{L5\_ex2.ggb}, movendo o ponto $A$ no plano $xy$ é esperado que o ponto $B=\sigma(A)$ se movimente pela superfície.
  
+ Uma forma mais fácil de provar esse exercício que só percebi depois de terminar, é perceber que $S$ é gráfico da função diferenciável $f(x,y)=x^2-y^2$ e usar o exercício 3 para provar regularidade.
+ 
  \ex{3} \blue{Mostre que, se $f(u, v)$ é uma função real diferenciável, onde $(u, v)\in U$, aberto de $\rr$, então a aplicação $X(u, v) = (u, v, f(u ,v))$ é uma \textit{superfície parametrizada regular}, que descreve o gráfico da função $f$.}
  
  
@@ -130,8 +132,7 @@
 	\dfrac{\partial X}{\partial u}\times \dfrac{\partial X}{\partial v}&=(1,0,f_u)\times(0,1,f_v)\\&=(-f_u,-f_v,1)
  \end{align*}
 
- que é sempre diferente do vetor nulo, devido à última coordenada constante.
-
+ que é sempre diferente do vetor nulo, devido à última coordenada constante; Logo a aplicação $X$ é uma parametrização de uma superfície regular.
  
  \ex{4} \blue{Considere o \textit{hiperbolóide de uma folha}
  	
@@ -144,20 +145,65 @@
  está contida em $S$, e que, todo ponto do hiperboloide está em alguma dessas linhas. Desenhe o hiperbolóide e as linhas em um ambiente gráfico. Deduza que a superfície pode ser coberta por uma única parametrização.
 }
 
- \sol{4} test4
+
+ \sol{4} Tome inicialmente o caso $\theta \in\{\pi/2+2k\pi;k\in\mathbb{Z}\}$ onde $\cos\theta=0$ e $\sin\theta=\pm1$.
+ 
+ Dessa forma, pelas equações do enunciado, temos:
+ $$\pm(1-y)=0\Rightarrow y=1$$
+ $$\pm(x+z)=0\Rightarrow x = -z$$
+ Assim, $x^2+y^2-z^2=z^2+1-z^2=1$, satisfazendo a condição de pertencimento a $S$.
+ 
+ Analogamente, no caso $\theta\in\{2k\pi;k\in\mathbb{Z}\}$ temos $\sin\theta=0,\cos\theta\pm1$ e as equações implicam:
+ $$\pm(x-z)=0\Rightarrow x = z$$
+ $$\pm(1+y)=0\Rightarrow y=-1$$
+ Dessa forma $x^2+y^2-z^2=x^2+1-x^2=1$, logo pertence a $S$.
+ 
+ Nos outros casos, podemos multiplicar as duas equações, e obteremos por produto notável:
+ 
+ $$(x^2-z^2)\cos\theta\sin\theta=(1-y^2)\sin\theta\cos\theta$$
+ 
+ Como estamos considerando os casos onde $cos\theta\neq0,\sin\theta\neq0$ então podemos dividir a expressão acima por $\sin\theta\cos\theta$, obtendo:
+ 
+ $$x^2-z^2=1-y^2\Rightarrow x^2+y^2-z^2=1,$$
+ 
+ satisfazendo assim a condição de pertencimento de $S$
+ 
+ Para provar que todo ponto da superfície está em uma das linhas, precisamos provar que $\forall (x,y,z)\in S$, existe um $\theta$ que satisfaz a expressão das retas.
+ 
+ No caso onde $y=1$, tomamos $\theta = \pi/2$ e satisfazemos a primeira equação $(x-z)\cos\theta=(1-y)\sin\theta$.
+ 
+ No caso $y=-1$, pela equação da superfície, tem-se $x^2=z^2\Rightarrow x=\pm z$. No sub-caso $x=-z$, tomando $\theta=-\pi/2$, a segunda equação é satisfeita: $(x+z)\sin\theta=0\Leftrightarrow x=-z$. No outro caso, onde $x=z$, toma-se $\theta=0$, e a primeira equação é satisfeita: $(x-z)\cos\theta=0\Leftrightarrow x=z$.
+ 
+ No caso onde $y\neq \pm 1$, podemos fatorizar a expressão da superfície em $(x+z)(x-z)=(1+y)(1-y)\Rightarrow(x+z)\dfrac{x-z}{1-y}=1+y$. Sendo assim o ângulo $\theta=\tan^{-1}\left(\dfrac{x-z}{1-y}\right)$ satisfaz a segunda equação, que pode ser reescrita (para $\theta\neq \pi/2+k\pi,\forall k \in \mathbb{Z}$) como $(x+z)\tan\theta=1+y$.
  
  \ex{5} \blue{
  Considere uma curva regular $\alpha(s)=(x(s),y(s),z(s)),s\in I\subset\real$. Seja o subconjunto de $\real^3$ gerado pelas retas que passam por $\alpha(s)$, paralelas ao eixo $O_z$. Dê uma condição suficiente que deve satisfazer a curva para que $S$ seja o traço de uma \textit{superfície parametrizada regular}.
  }
 
-\sol{5} teste5
+\sol{5} Uma tentativa de parametrização seria:
+\begin{align*}
+	\sigma:I\times \real&\to\real^3\\
+	(s,z)&\mapsto (x(s),y(s),z)
+\end{align*}
 
-\ex{6}\blue{\textbf{ (Extra)} Mostre que o cilindro circular
+Se $I\times\real$ for aberto e $\sigma$ caracterizar um homeomorfismo local para cada $p\in(I\times\real)$, temos uma superfície.
 
-$$S:=\{(x,y,z)\in\real^3:x^2+y^2=1\}$$
+Uma condição suficiente para ser superfície regular, é o posto da jacobiana da parametrização ser 2, ou ainda, $\sigma_s(s,z)\times\sigma_z(s,z)\neq0,~\forall(s,z)\in I\times\real$
+\begin{align*}
+	\sigma_s(s,z) &= (x_s(s),y_s(s),0)\\
+	\sigma_z(s,z) &= (0,0,1)\\
+	\sigma_s(s,z)\times\sigma_z(s,z) &= (y_s(s),-x_s(s),0)
+\end{align*}
+Assim, a condição suficiente equivale à $y_s(s)$ e $x_s(s)$ não se anularem ao mesmo tempo, ou seja:
+$$\forall s\in I, x(s)=0\Leftrightarrow y_s(s)\neq0$$
 
-pode ser descrito por uma parametrização global, isto é, que existe um atlas composto só por uma única carta.
-}
+
+%\ex{6}\blue{\textbf{ (Extra)} Mostre que o cilindro circular
+%
+%$$S:=\{(x,y,z)\in\real^3:x^2+y^2=1\}$$
+%
+%pode ser descrito por uma parametrização global, isto é, que existe um atlas composto só por uma única carta.
+%}
 	\newpage
 %	 \addcontentsline{toc}{section}{Referências}
 	\bibliographystyle{plain}
