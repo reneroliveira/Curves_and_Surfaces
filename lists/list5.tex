@@ -176,6 +176,35 @@
  
  No caso onde $y\neq \pm 1$, podemos fatorizar a expressão da superfície em $(x+z)(x-z)=(1+y)(1-y)\Rightarrow(x+z)\dfrac{x-z}{1-y}=1+y$. Sendo assim o ângulo $\theta=\tan^{-1}\left(\dfrac{x-z}{1-y}\right)$ satisfaz a segunda equação, que pode ser reescrita (para $\theta\neq \pi/2+k\pi,\forall k \in \mathbb{Z}$) como $(x+z)\tan\theta=1+y$.
  
+ O desenho se encontra no arquivo \href{https://github.com/reneroliveira/Curves_and_Surfaces/blob/main/ggb_files/L5_ex4.ggb}{L5\_ex4.ggb}. A parametrização da superfície será feita a partir da parametrização das retas. As retas podem ser expressadas pela interseção dos dois planos cujas equações foram dadas no enunciado. Considerando $z=0$ chegamos no sistema abaixo, cuja solução para $x$ e $y$ será nosso ponto inicial.
+\begin{align*}
+	\begin{cases}
+		x\cos\theta+y\sin\theta=\sin\theta\\
+		x\sin\theta-y\cos\theta=\cos\theta
+	\end{cases}
+\end{align*}
+
+Com um pouco de algebrismo que omitirei, chega-se em $x=\sin2\theta,y=-\cos2\theta$. Logo o ponto $p_0=(\sin2\theta,-\cos2\theta,0)$ é ponto inicial da nossa parametrização. Em $z=0$ nossa superfície é circunferência unitária $x^2+y^2=1$, e o formato de $x,y$ também sugere que $\theta$ esteja relacionado ao ângulo de rotação; No caso como temos $2\theta$ nas funções trigonométricas, consideraremos intervalos abertos para $\theta$ de tamanho $\pi$ para cobrir (quase) toda a superfície.
+
+Estamos parametrizando a reta no formato $p_0+t\vec v$ onde $\vec v$ é um vetor diretor. podemos encontrar tal vetor pelo produto vetorial dos vetores normais dos dois planos. Esses normais são dados simplesmente pelos coeficientes de $x,y,z$ nas suas equações.
+
+\begin{align*}
+	\text{Equação 1: }&x\cos\theta+y\sin\theta-z\cos\theta=\sin\theta\\
+	N_1&=(\cos\theta,\sin\theta,-\cos\theta)\\
+	\text{Equação 2: }&x\sin\theta-y\cos\theta+z\sin\theta=\cos\theta\\
+	N_2&=(\sin\theta,-\cos\theta,\sin\theta)\\
+	\vec v = N_1\times N_2&=(\sin^2\theta-\cos^2\theta,-2\cos\theta\sin\theta,-\cos^2\theta-\sin^2\theta)\\
+	&=(-\cos2\theta,-\sin2\theta,-1)
+\end{align*}
+
+	Sendo assim, usamos o conjunto de parametrizações:	
+	\begin{align*}
+		\sigma:U\times\real&\to S\\
+		(\theta,t)&\mapsto (\sin2\theta,-\cos2\theta,0) -t(\cos2\theta,\sin2\theta,1),
+	\end{align*}
+
+onde $U$ pode ser $(0,\pi)$ ou $(-\pi/2,\pi/2)$ para cobrir todos os pontos usando duas parametrizações.
+
  \ex{5} \blue{
  Considere uma curva regular $\alpha(s)=(x(s),y(s),z(s)),s\in I\subset\real$. Seja o subconjunto de $\real^3$ gerado pelas retas que passam por $\alpha(s)$, paralelas ao eixo $O_z$. Dê uma condição suficiente que deve satisfazer a curva para que $S$ seja o traço de uma \textit{superfície parametrizada regular}.
  }
@@ -196,7 +225,6 @@ Uma condição suficiente para ser superfície regular, é o posto da jacobiana 
 \end{align*}
 Assim, a condição suficiente equivale à $y_s(s)$ e $x_s(s)$ não se anularem ao mesmo tempo, ou seja:
 $$\forall s\in I, x(s)=0\Leftrightarrow y_s(s)\neq0$$
-
 
 %\ex{6}\blue{\textbf{ (Extra)} Mostre que o cilindro circular
 %
