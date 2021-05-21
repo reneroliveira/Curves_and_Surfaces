@@ -72,7 +72,7 @@
 	
 	onde $\ker{F}:=\{x\in\real^m;Fx=0\}$. Assim, basta provar que a dimensão do núcleo é 0, e teremos o resultado.
 	
-	Trivialmente, se $x\in\real^m$ é tal que $x=0$, então $x\in\ker F$. Suponha, por contradição, que $\exists x\in\real^m,x\neq 0$ tal que $x\in\ker F$, assim $Fx=0$. Mas pela injetividade, $x \neq 0\Rightarrow Fx\neq F0=0$, absurdo. Logo $\ker F = {0}$, que tem dimensão 0. Portanto,
+	Trivialmente, se $x\in\real^m$ é tal que $x=0$, então $x\in\ker F$. Suponha, por contradição, que $\exists x\in\real^m,x\neq 0$ tal que $x\in\ker F$, assim $Fx=0$. Mas pela injetividade, $x \neq 0\Rightarrow Fx\neq F0=0$, absurdo. Logo $\ker F = \{0\}$, que tem dimensão 0. Portanto,
 	
 	$$\rk F =m$$
 	
@@ -224,7 +224,7 @@ Uma condição suficiente para ser superfície regular, é o posto da jacobiana 
 	\sigma_s(s,z)\times\sigma_z(s,z) &= (y_s(s),-x_s(s),0)
 \end{align*}
 Assim, a condição suficiente equivale à $y_s(s)$ e $x_s(s)$ não se anularem ao mesmo tempo, ou seja:
-$$\forall s\in I, x(s)=0\Leftrightarrow y_s(s)\neq0$$
+$$\forall s\in I, x(s)\neq0\lor y_s(s)\neq0$$
 
 %\ex{6}\blue{\textbf{ (Extra)} Mostre que o cilindro circular
 %
