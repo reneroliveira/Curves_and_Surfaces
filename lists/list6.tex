@@ -1,0 +1,365 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[brazil,english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\selectlanguage{brazil}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+\hypersetup{%
+	colorlinks=true,
+	linkcolor=blue,
+	linkbordercolor={0 0 1}
+}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\emp}{\varnothing}
+%\newcommand{\real}{\mathbb{R}}
+\newcommand{\rr}{\mathbb{R}^2}
+\newcommand{\rn}{\mathbb{R}^n}
+\newcommand{\bd}[1]{\boldsymbol{#1}}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\dps}{\displaystyle}
+\begin{document}
+
+Curvas e Superfícies, FGV/EMAp  2021\hfill Lista 6 \#\\
+Asla Medeiros e Sá (data de entrega: 26/05/2021 - quarta-feira)\\
+\textbf{Aluno:} Rener de Souza Oliveira\\
+Tópicos: {\it Topologia}, {\it conjuntos abertos, fechados, compactos e conexos}, {\it continuidade e homeomorfismo}.
+
+\hrulefill
+
+\begin{enumerate}
+
+\item Provar que toda bola aberta $B(x;r)$ \'e um conjunto aberto.\cite{analise2}
+
+\textbf{Solu\c{c}\~ao:} 
+Seja $y\in B(r;x).$ Queremos provar que existe $\epsilon>0$ tal que $B(y;\epsilon)\subseteq B(r;x).$ Definimos para isto $\epsilon:= r-|y-x|>0.$ Logo, dado qualquer ponto $z\in B(y;\epsilon),$ temos que
+$$
+|z-x| \leq |z-y|+|y-x| < \epsilon+|y-x| =  r-|y-x| +|y-x| =r.
+$$
+Logo $z\in B(x;r).$ Isto \'e, $B(y;\epsilon) \subseteq B(x;r).$ Conclu\'imos que $B(x;r)$ \'e aberto.
+
+\item Provar que $Z:=\{(x,y)\in \R^2: xy<0\}$ é aberto. 
+
+\emph{Dica:} Seja $(a,b)$ no conjunto $Z$. Seja $\epsilon:=\min\{|a|,|b| \}>0.$ Provar que $B((a,b);\epsilon)\subseteq Z.$
+
+\textbf{Solução:}
+
+Tome $(a,b)\in Z$ e faça $\delta =\min\{|a|,|b|\}$, vamos provar que $B((a,b),\delta)\in Z$.
+
+Dado $(x,y)\in B((a,b),\delta)$ arbitrário, queremos provar que $xy<0$. Podemos estabelecer duas desigualdades: $|x-a|<\delta$ e $|y-b|<\delta$; demonstração segue:
+\begin{align*}
+	|x-a|&=\sqrt{(x-a)^2}\\
+	&\leq\sqrt{(x-a)^2+(y-b)^2}\\
+	&=||(x,y)-(a,b)||\\
+	&<\delta,
+\end{align*}
+e de forma análoga se conclui $|y-b|<\delta$. Tendo $|x-a|<\delta$, significa dizer que $a-\delta<x<a+\delta$. Suponha que $a>0$, como $\delta\leq |a|=a$ então $-\delta\geq a$, logo $x>a-\delta\Rightarrow x>a-a=0$. Supondo $a<0$, teremos $\delta\leq |a|=-a$ e $x<a+\delta\leq a-a=0$, ou seja $x<0$. O caso $a=0$ não se dá, pois $ab<0$. O que provamos é que o sinal de $x$ é igual ao sinal de $a$, de forma análoga, prova-se que $\op{sign}(y)=\op{sign}(b)$. Como\footnote{Se $\lambda\in\R,\op{sign}(\lambda)=1$ se $\lambda\geq0$ e $-1$ se $\lambda<0$} $\op{sign}(ab)=-1$, e a função sinal é tal que $\op{sign}(\alpha\beta)=\op{sign}(\alpha)\op{sign}(\beta),\forall\alpha,\beta\in\R$, então \begin{align*}
+	\op{sign}(xy)&=\op{sign}(x)\op{sign}(y)\\
+	&=\op{sign}(a)\op{sign}(b)\\
+	&=\op{sign}(ab)\\
+	&=-1,
+\end{align*}
+ou seja $xy<0$, como queríamos demonstrar.
+\item Provar que união de conjuntos abertos é um conjunto aberto.
+
+\textbf{Solu\c{c}\~ao:} Seja $\{A_\lambda: \lambda \in \Lambda\}$ uma fam\'ilia de abertos, onde $\Lambda$ \'e um conjunto de \'indices (poss\'ivelmente infinito, n\~ao enumer\'avel). Consideremos a união:
+$$
+A:= \bigcup_{\lambda \in \Lambda} A_\lambda.
+$$
+Seja $z\in A.$ Logo $z\in A_\lambda$ para algum índice $\lambda.$ Dado que $A_\lambda$ é aberto, existe $\epsilon>0$ tal que $B(z;\epsilon)\subseteq A_\lambda.$ Logo $B(z;\epsilon) \subseteq A.$ Conclu\'imos que $A$ \'e aberto.
+
+\item Provar que a interse\c{c}\~ao de uma quantidade finita de abertos \'e um conjunto aberto.
+
+\textbf{Solução:} Seja $I$ um conjunto de índices finito de $n$ elementos. Temos então um conjunto enumerável que pode ser representado por $I=\{1,2,\ldots,n\}$. Queremos provar que se $A_i$ é aberto $\forall i \in I$, então $\dps\bigcap_{i=1}^nA_i$ é aberto.
+
+Se cada $A_i$ é aberto, dado $i\in I$ temos que $\forall x\in A_i,~\exists\delta_i>0;B(x,\delta_i)\subseteq A_i$.
+
+Tome $x\in\dps\bigcap_{i=1}^nA_i$, assim $x\in A_i,\forall i \in I$. Tome então um $\delta>0$ tal que $\delta\leq\dps\min_{i\in I}\{\delta_i\}$. Assim $B(x,\delta)\subseteq B(x,\delta_i)\subseteq A_i$ para todo $i\in I$. Dessa forma $B(x,\delta)\subseteq\dps\bigcap_{i=1}^nA_i$.
+
+
+\item Provar que a interse\c{c}\~ao de conjuntos fechados \'e um conjunto fechado. Ser\'a que uni\~ao de fechados \'e tamb\'em fechado? Se n\~ao for certo, dar um contraexemplo.
+
+\textbf{Solução:} Tome $I$ um conjunto de índices qualquer. Queremos provar que se $F_\lambda$ é fechado $\forall\lambda \in I$ então $\dps\bigcap_{\lambda\in I}F_\lambda$ é fechado. Temos para cada $\lambda$: Se $(x_n)_{n\in\N}\in F_\lambda$ com $\dps\lim_nx_n=x$ então $x\in F_\lambda$.
+
+Tome $(y_n)\in\dps\bigcap_{\lambda\in I}F_\lambda$ convergente com $\dps\lim_ny_n=y$.
+
+Se a sequência $(y_n)$ está na interseção então $(y_n)\in F_\lambda,\forall\lambda\in I$. Assim como cada $F_\lambda$ é fechado $\dps\lim_ny_n\in F_\lambda,\forall\lambda\in I$. Portanto $\dps\lim_ny_n=y\in\dps\bigcap_{\lambda\in I}F_\lambda$, concluindo que $\dps\bigcap_{\lambda\in I}F_\lambda$ é fechado.
+
+\textit{Contraexemplo para união:}
+
+Tome $a,b\in\R$ com $a<b$, e $|b-a|>2$ e $(F_n)_{n\in\N}$ família de fechados com $F_n:=[a+1/n,b-1/n]$.
+
+\textit{Afirmação:} $\dps\bigcup_{n\in\N}F_n=(a,b)$ que não é fechado.
+
+\textit{Prova:} Provemos primeiro que $\bigcup_{n\in\N}F_n\subseteq(a,b)$.
+
+Se $x\in\bigcup F_n$ então $x\in F_{n_0}$ para algum $n_0\in\N$, como $a+1/n_0>a$ e $b-1/n_0$ então $F_{n_0}=[a+1/n_0,b-1/n_0]\subset(a,b)$, logo $x\in(a,b)$\footnote{A restrição do início $|b-a|>2$ é para não termos problemas no caso $n_0=1$, e garantir sempre que $a+\frac1n_0<b-\frac1n_0$}.
+
+Agora provaremos que $(a,b)\subseteq\bigcup F_n$.
+
+Dado $x\in(a,b)$ suponha que $x\leq(b-a)/2$, omitirei o outro caso pois a demonstração é análoga.
+
+Sabe-se que $\exists n_0\in\N$ tal que $\frac1n_0<x-a$, assim $a+\frac1n_0<a+(x-a)=x$. Basta agora provar que $x<b-\frac1n_0$ e concluiremos que $x\in F_{n_0}\subseteq\bigcup F_n$.
+
+\begin{align*}
+	x+1/n_0&<x+(x-a)\\
+	&=2x-a\\
+	&\leq 2 (b-a)/2-a\\
+	&=b-a+b=b
+\end{align*}
+
+Logo $x<b-1/n_0$ como queríamos demonstrar. O fato de $(a,b)$ não ser fechado segue por exemplo, da sequência $a_n=a+1/n$ que converge para $a$ porém $a\notin(a,b)$.
+
+%\item O conjunto $\{1/n : n\in \mathbb{N}_*\} \subset \R$ \'e aberto? \'E fechado? 
+
+\item D\^e exemplos de conjuntos que n\~ao s\~ao nem abertos nem fechados.
+
+\textbf{Solução:} Tome $\Q\subset\R$. 
+
+\textit{Afirmação 1:} $\Q$ não é aberto.
+
+$\forall q\in\Q,\forall\delta>0;B(q,\delta)=(q-\delta,q+\delta)$ contém infinitos irracionais, pela densidade de $\R\backslash\Q$ em $\R$ que não detalharei aqui. Sendo assim, nenhuma bola $B(q,\delta)$ está contida em $\Q$, logo $\Q$ não é aberto.
+
+\textit{Afirmação 2:} $\Q$ não é fechado.
+
+Pela densidade dos racionais nos reais, vamos construir uma sequência em $\Q$ cujo limite não é racional.
+
+Seja $A_n=(\sqrt2-1/n,\sqrt2+1/n)$. Temos $A_n\searrow\{\sqrt2\}$ (i.e $A_n\supset A_{n+1}$ e $\bigcap_{n\in\N}A_n=\{\sqrt2\}$).
+
+Para cada $n\in\N$ escolha $q^*_n\in A_n\cap\Q$ qualquer, pela densidade dos racionais isso é sempre possível para todo $n$. Como $A_n\searrow\{\sqrt2\}$, então $\lim q^*_n=\sqrt2\notin\Q$. Dessa forma $\Q$ não é fechado.
+
+\textbf{}
+\item Prove que 
+\[
+\{(x,y) \in \mathbb{R}^2: y>0\}
+\]
+\'e aberto.
+
+\textbf{Solução:} Seja $A=\{(x,y) \in \mathbb{R}^2: y>0\}$ e tome $(x,y)$ com $y>0$. Temos então $(x,y)\in A$.
+
+Queremos provar que $\exists \delta>0$ com $B((x,y),\delta)\subseteq A$.
+
+Tome $\delta$ tal que $0<\delta<y$. Tomemos $(a,b)\in B((x,y),\delta)$, queremos provar que $(a,b)\in A$, ou seja $b>0$.
+
+\begin{align*}
+	\sqrt{(y-b)^2}&\leq\sqrt{(x-a)^2+(y-b)^2}\\
+	&=||(x,y)-(a,b)||\\
+	&<\delta<y
+\end{align*}
+
+Assim $\sqrt{(y-b)^2}=|y-b|<y$. No caso $y-b\geq0$, temos $|y-b|=y-b$, assim $|y-b|<y\Rightarrow y-b<y\Rightarrow b>0$.
+
+No caso $y-b<0$, temos diretamente que $b>y>0$.
+
+provamos então que $b>0$, logo $(a,b)\in A$, o que demonstra que $B((x,y),\delta)\subseteq A$, bastando tomar $\delta<y$.
+\item Prove que um conjunto em $\mathbb{R}^n$ \'e aberto se, e somente se, \'e uni\~ao de bolas abertas.
+
+\textbf{Solução:} $(\Rightarrow)$ $A\subseteq\rn$ aberto $\Rightarrow$ A é união de bolas abertas.
+
+Temos que $\forall x\in A,\exists \delta_x>0;B(x,\delta_x)\subseteq A$. Tome $B=\dps\bigcup_{x\in A}B(x,\delta_x)$. Afirmo que $A=B$, segue a demonstração:
+
+\begin{itemize}
+	\item $(A\subseteq B)$ Tome $x\in A$ arbitrário, mas fixo, sabemos que  $x\in B(x,\delta_x)\subseteq B$ pois $B$ é a união das bolas sobre $x\in A$. Logo $x\in B$, provando que $A\subseteq B$.
+	
+	\item $(B\subseteq A)$ Tome $y\in B=\dps\bigcup_{x\in A}B(x,\delta_x)$ arbitrário, mas fixo. Temos então que $\exists x\in A;y\in B(x,\delta_x)$, mas $B(x,\delta_x)\subseteq A$ por construção. Logo $y\in A$, implicando $B\subseteq A$.
+\end{itemize}
+
+$(\Leftarrow)$ Se $A=\dps\bigcup_{\lambda\in I}B(\lambda,\delta_\lambda)$ então $A$ é aberto.
+
+Tome $x\in A$ arbitrário, mas fixo; Queremos provar que $\exists\delta>0$ tal que $B(x,\delta)\subseteq A$. Mas se $x\in A$, então $\exists\lambda^* \in I$ tal que $x\in B(\lambda^*,\delta_{\lambda^*})\subseteq A$. Tome então $\delta=\lambda^*$ e temos os resultado.
+
+\item Provar que $\mathbb{R}\times \{0\}$ \'e fechado em $\mathbb{R}^2$.
+
+\textbf{Solução:} Defina $A_n:=\{(x,y)\in\rr;x\in\R,-\frac1n\leq y\leq \frac1n\}$, ou ainda $A_n=\R\times[-\frac1n,\frac1n]$.
+
+Afirmações:
+
+\begin{enumerate}
+	\item $A_n$ é fechado $\forall n \in \N$
+	\item $\dps\bigcap_{n\in\N}A_n=\R\times\{0\}$
+\end{enumerate}
+
+As afirmações (a) e (b) juntas com o exercício anterior provam que $\R\times\{0\}$ é fechado. 
+
+Prova de (a): $\R$ e $[-\frac1n,\frac1n]$ são fechados, como o produto cartesiano de fechados é fechado\cite{analise2} então $A_n=\R\times[-\frac1n,\frac1n]$ é fechado.
+
+Prova de (b): primeiramente vamos provar que $\cap A_n\subseteq \R\times\{0\}$. Se $(x,y)\in\cap A_n$ então $(x,y)\in A_n,\forall n\in\N$. Precisamos provar que $x\in\R$ e $y\in\{0\}$ o primeiro é trivial da definição de $A_n$, e se $y\in[-\frac1n,\frac1n],\forall n\in\N$ então tem-se $y\in\{0\}$, pois caso contrário, se $y$ pertencesse à $(-\eps,0)\cup(0,\eps)$ para algum $\eps>0$ existiria $n_0$ grande suficiente tal que $y\notin[-\frac1{n_0},\frac1{n_0}]$, bastando tomar $n_0>\frac1{|y|}$ por exemplo, tal fato seria um absurdo.
+
+
+
+\item Prove que as bolas fechadas s\~ao conjuntos fechados.
+
+\textbf{Solução:} Definimos bola fechada de centro $c\in\rn$ e raio $r$ como $B[c,r]:=\{x\in\rn;||x-c||\leq r\}$.
+
+Tome uma sequência $(x_k)$ convergente em $B[c,r]$ com $\lim x_k=x$. Queremos provar que $||x-c||\leq r$, ou seja, que o limite também pertence a bola.
+
+Temos que:
+\begin{align}
+	||x-c||&=||x-x_k+x_k-c||,\forall k\in\N\nonumber\\
+	&\leq ||x_k-x||+||x_k-c||,\forall k\in\N\label{triineq}\\
+	&\leq ||x_k-x||+r,\forall k\in\N,\label{ball}
+\end{align}
+onde \ref{triineq} segue da desigualdade triangular e \ref{ball} do fato de $(x_k)\in B[c,r]$. Como a desigualdade $||x-c||\leq ||x_k-x||+r$ vale para todo elemento da sequência, podemos tomar o limite em $k$ e teremos $||x-c||\leq r$ C.Q.D.
+
+\item Seja $A \subset \mathbb{R}^n$ tal que existe $d>0$ tal que $\|x-y\| \geq d$ para todo par de pontos $x,y \in A.$ Prove que $A$ \'e fechado em $\mathbb{R}^n.$ 
+
+\textbf{Solução} Tome $(p_k)$ sequência de pontos em $A$, tal que $\lim p_k = a$.
+
+Vamos provar que $a\in A$, ou seja que $\exists d^*>0$ tal que qualquer par $x,a$ satisfaz $||x-a||\geq d^*$.
+
+Sabemos que $\exists d>0$ tal que $\forall k\in\N,||p_k-x||\geq d\forall x\in A$. Assim, para todo $k$ natural e para todo ponto $x$ em $A$ vale:
+
+\begin{align*}
+	d&\leq ||p_k-x||\\
+	&=||p_k-a+a-x||\\
+	&\leq ||p_k-a||+||x-a||
+\end{align*}
+
+Temos então $||x-a||\geq d-||p_k-a||$. Tomando $k$ suficientemente grande tem-se $d-||p_k-a||>0$. Sendo assim, fazendo $d^*=d-||p_k-a||$ para tal $k$ suficientemente grande, temos que $||x-a||\geq d^*,\forall x\in A$, ou seja $a\in A$, como queríamos demonstrar.
+
+%\textit{Teorema}\cite{analise2}: Um conjunto é aberto se, e somente se seu complementar é fechado.
+
+
+\item Seja $A\subset \mathbb{R}^2$ um conjunto n\~ao vazio contido numa reta de $\mathbb{R}^2.$ Prove que $A$ n\~ao \'e aberto.
+
+\textbf{Solução:} Suponha por absurdo que $A$ é aberto, ou seja, $\forall x \in A,\exists \delta>0;B(x,\delta)\subseteq A$. Seja $R_{p_0,v}$ a reta que passa por $p_0$ de vetor diretor $v$.
+$$R_{p_0,v}:=\{p_0+tv;t\in \R\}$$
+Pelo enunciado, $A\subset R_{p_0,v}$ é não vazio. Tome então algum ponto $p$ de $A$ e expresse-o como $p=p_0+tv$ com $t$ apropriadamente escolhido. Considere a sequência $p_k=p+\frac1ku$ com $u\in\rr$ um vetor qualquer tal que $u,v$ sejam linearmente independentes. Por conta disso, para todo $k$, $p_k$ não pertence à reta $R_{p_0,v}$, logo não pertence a $A$. Além disso, $\lim p_k=p$, ou seja $\forall \delta>0,\exists k_0\in\N$ tal que $\forall k>k_0,||p_k-p||<\delta$, ou seja, $p_k\in B(p,\delta)$. Mas como $p_k\notin A$, então $B(p,\delta)\notin A$.
+
+Em resumo provamos que toda bola aberta ao redor de $p$ contém pontos que não estão na reta, logo $A$ não é aberto.
+
+\item Seja $A\subseteq \mathbb{R}^n.$ Prove que $\mathbb{R}^n\backslash \emph{int} (A)$ \'e fechado.
+
+\textbf{Solução:} Pelo Teorema 17 do Capítulo 1 de \cite{analise2}, um conjunto é fechado, se e só se, seu complemento é aberto. Como $\op{int}(A)$ é aberto por definição, $\rn\backslash\op{int}(A)$ é fechado. Para essa solução não ficar muito curta, vou demonstrar o Teorema (só a ida) já que o Elon não o faz.
+
+\textit{Se $A\subseteq\rn$ é aberto, então $A^c$ é fechado}
+
+\textit{Prova:} Temos que $\forall x \in A, \exists\delta_x>0$ tal que $B(x,\delta_x)\subseteq A$. Tome $(y_k)\in A^c$ com $\lim y_k=y$. Afirmamos que $y\notin A$, pois se fosse o caso existiria $\delta_y>0$ tal que $B(y,\delta_y)\subseteq A$, e como $\lim y_k=y$, para tal $\delta_y$, existe $k_0\in\N$ tal que $\forall k>k_0, y_k\in B(y,\delta_y)\subseteq A$, contradizendo $(y_k)\in A^c$. Portando se o limite $y\notin A$, temos $y\in A^c$, provando então que $A^c$ é fechado.
+
+
+\item Seja $A\subset B \subseteq \mathbb{R}^n,$ e $x$ ponto de acumula\c{c}\~ao de $A$. Ser\'a que $x$ \'e tamb\'em ponto de acumula\c{c}\~ao de $B$?
+
+\textbf{Solução:} Se $x$ é ponto de acumulação de $A$, então existe uma sequência $(x_n)$ contida em $A$, com limite igual a $x$. Como $(x_n)\in A$ e $A\subset B$, então, em particular $(x_n)\in B$. Como $x$ é agora o limite de um sequência de pontos em $B$, então $x$ é ponto de acumulação de $B$.
+% \item Seja $A\subset \mathbb{R}$ e $x$ o supremo do conjunto $A$. Ser\'a que $x$ \'e um ponto de acumula\c{c}\~ao de $A$?
+
+%\item Se nenhum ponto do conjunto $X\subseteq\mathbb{R}^n$ \'e ponto de acumula\c{c}\~o então prove que se pode escolher, para cada ponto $x \in X,$ uma bola aberta $B^x$, de centro $x,$ de tal maneira que, para $x,y\in X$ com $x\neq y,$ se tenha $B^x \cap B^y = \emptyset.$
+
+\item Se $A\subset \mathbb{R}^n$ \'e aberto, prove que sua fronteira tem interior vazio. 
+%D\^e um exemplo de um conjunto $X\subseteq \mathbb{R}^n$ cuja fronteira $\partial X$ seja um conjunto aberto.
+
+\textbf{Solução:} Defini-se fronteira de $A$ como:
+$$\partial A:=\{x\in\rn;\forall\delta>0,B(x,\delta)\cap A\neq\emp\text{ e }B(x,\delta)\cap A^c\neq\emp\}$$
+Queremos provar que $\op{int}(\partial A)=\emp$.
+
+Suponha, por absurdo que $\op{int}(\partial A)\neq\emp$, assim, $\exists y\in\rn$ tal que $y\in\op{int}(\partial A)$ i.e, para tal $y$, $\exists\delta_y>0$ onde $B(y,\delta_y)\subseteq\partial A$.
+
+Se toda a bola está em $\partial A$, então, em particular $y\in\partial A$, ou seja, temos $B(y,\delta_y)\cap A\neq \emp$. Tome então $x\in B(y,\delta_y)\cap A$. em particular $x\in A$ aberto, logo existe uma bola $B(x,\delta_x)\subseteq A$, e podemos tomar $\delta_x$ suficientemente pequeno de tal forma que $B(x,\delta_x)$ também pertença a $B(y,\delta_y)$\footnote{já que $B(y,\delta_y)$ é aberto.}. Com isso $B(x,\delta_x)$ pertencerá a fronteira $\partial A$, assim $B(y,\delta_y)\cap A^c\neq \emp$, o que contradiz o fato de $B(x,\delta_x)$ estar inteiramente contido em $A$.
+
+\item Seja $A\subseteq \mathbb{R}^n$ com $n\geq 2.$ Prove que, dado $a\in \mathbb{R}^n\backslash A,$ o conjunto $A \cup \{a\}$ \'e aberto se, e somente se, $a$ \'e um ponto isolado da fronteira de $A.$ 
+
+\item Prove que se $F\subseteq\mathbb{R}^n$ \'e fechado ent\~ao sua fronteira tem interior vazio.
+
+\textbf{Solução:} Se $F$ é fechado, $F^c$ é aberto, e pelo exercício 15, $\op{int}(\partial F^c)=\emp$. Afirmo que $\partial F = \partial F^c$ e o problema se encerra.
+
+Prova da afirmação: 
+$$\partial F :=\{x\in\rn;\forall\delta>0,B(x,\delta)\cap F\neq\emp\text{ e }B(x,\delta)\cap F^c\neq\emp\}$$
+$$\partial F^c:=\{x\in\rn;\forall\delta>0,B(x,\delta)\cap F^c\neq\emp\text{ e }B(x,\delta)\cap (F^c)^c\neq\emp\}$$
+Mas como $(F^c)^c=F$, segue que as duas definições são as mesmas, logo os conjuntos são iguais.
+
+
+%\item Prove que $X\subseteq \mathbb{R}$ \'e conexo se, e somente se, \'e um intervalo.
+%\item Prove que a uni\~ao de uma fam\'ilia de conjunto conexos com um ponto em comum \'e um conjunto conexo. %% Ver Elon Curso de An\'alise 2, p57
+
+\item Sejam $F \in \mathbb{R}^n$ fechado e $f : F \rightarrow \mathbb{R}^m$ uma aplicação contínua. Mostre que $f$ leva subconjuntos limitados de $F$ em subconjuntos limitados de $\mathbb{R}^m$. Prove, exibindo um contra-exemplo, que não se conclui o mesmo removendo-se a hipótese de $F$ ser fechado.
+
+\textbf{Solução:} Se $f:F\to\rn$ é contínua, então $\forall (x_n)\in F$ com $\lim x_n=c$, então $\lim f(x_n)=f(c)$.
+
+Tome $A\subset F$ limitado, i.e, $\exists M>0$ tal que $A$ está contido numa bola aberta de centro na origem e raio $M$. Queremos provar que $f(A)$ é limitado.
+
+Seja $B=f(A)$ e suponha, por contradição, $B$ não limitado, ou seja, $\forall M>0,\exists b\in B$ tal que $b$ está fora de $B(0,M)$, ou $||b||>M$.
+
+Tome uma sequência $(b_n)\in B$ tal que $||b_n||>n$. Crie $(a_n)\in A$ tal que $f(a_n)=b_n,\forall n\in\N$. Como A é limitado, $(a_n)$ é limitada, e pelo Teorema de Bolzano-Weierstrass, existe subsequência $(a_{n_k})\in A$ convergente. Seja $a=\dps\lim_k a_{n_k}$. Como $A\subset F$ fechado, então $a\in F$, pela definição de fechado.
+
+Como $f$ é contínua, $\dps\lim_k f(a_{n_k})$ existe e é igual a $f(a)$, mas por construção, $b_{n_k}=f(a_{n_k})$ diverge, ABSURDO.
+
+O contraexemplo removendo a hipótese de domínio fechado é $f:(0,1)\to\R$ com $f(x)=\ln x$. $(0,1)$ é limitado mas $f((0,1))=(-\infty,0)$ não é.
+\item Prove que duas bolas abertas de $\mathbb{R}^n$ são homeomorfas.
+
+\textbf{Solução:} Dados $a \in \mathbb{R}^n$ e $r > 0$, consideremos a aplicação:
+\begin{align*}
+    f : B(0,1) & \rightarrow B(a, r) \\
+    x & \rightarrow rx + a
+\end{align*}
+A aplicação $f$ é bijetiva e contínua. Sua inversa, $f^{-1}: B(a,r) \rightarrow B(0,1)$, é dada por $f^{-1}(y) = \frac{1}{r}(y-a)$, donde se vê que $f^{-1}$ é contínua, portanto $f$ é um homeomorfismo. Pela transitividade da relação de homeomorfismo, conclui-se que duas bolas bertas quaisquer de $\mathbb{R}^n$ são homeomorfas. Um argumento análogo prova que vale o mesmo para duas bolas, ambas, fechadas.
+
+\item Verifique que a aplicação: 
+\begin{align*}
+    f : B(0,1) & \rightarrow \mathbb{R}^n \\
+    x & \rightarrow \frac{x}{1 - ||x||} 
+\end{align*}
+é um homeomorfismo entre a bola aberta unitária $B(0,1)$ e $\mathbb{R}^n$. Conclua que qualquer bola aberta de $\mathbb{R}^n$ é homeomorfa a todo o espaço $\mathbb{R}^n$.
+
+\textbf{Solução:} precisamos provar que $f$ é bijetiva (injetiva e sobrejetiva) e contínua com inversa contínua.
+
+\textbf{(Injetividade)} Tome $x,y\in(0,1)$, com $f(x)=f(y)$. iremos provar que isso implica $x=y$.
+
+Como $\frac{x}{1 - ||x||}=\frac{y}{1 - ||y||}$, se $x$ for zero, $y$ será zero e vice versa. Tomando o caso não trivial $x,y\neq0$, temos uma equação tipo\footnote{$\alpha=\frac{1}{1 - ||x||}$ e $\beta=\frac{1}{1 - ||y||}$} $\alpha x=\beta y$, com $\alpha,\beta\neq0$ (pois $||x||,||y||\neq1$) sendo assim, os vetores $x$ e $y$ são linearmente dependentes. Vamos provar a seguir que eles tem a mesma norma, e tendo a mesma norma e mesma direção, prova-se que eles são iguais, através de $x=\frac\beta\alpha y$, pois norma igual implica $\alpha=\beta$
+\begin{align}
+	||f(x)||=||f(y)||&\Rightarrow \frac{||x||}{1 - ||x||}=\frac{||y||}{1 - ||y||}\nonumber\\
+	&\Rightarrow ||x||(1-||y||)=||y||(1-||x||)\nonumber\\
+	&\Rightarrow ||x||-\cancel{||x||||y||}=||y||-\cancel{||y||||x||}\nonumber\\
+	&\Rightarrow ||x||=||y||\nonumber
+\end{align}
+%onde \ref{xy} se justifica pois $x,y\in(0,1)$, logo $x,y>0$ e $||x||=x$ e $||y||=y$. Prova-se então a injetividade.
+
+\textbf{(Sobrejetividade)} Queremos provar que $\forall y \in \rn,\exists x\in(0,1);f(x)=y$.
+
+Resolvendo $f(x)=y$ para $x$ temos o candidato $x=\frac{y}{1+||y||}$. Precisamos provar que $x\in B(0,1)$ e que de fato $f(x)=y$. O primeiro fato é trivial pois o módulo do denominador é sempre maior que a norma do numerador. Segue a confirmação do segundo fato:
+\begin{align*}
+	f(x)&=\frac{y/(1+||y||)}{1-||y||/(1+||y||)}\\
+	&=\frac{y/(1+||y||)}{(1+||y||-||y||)/(1+||y||)}\\
+	&=\frac{y}{1+||y||-||y||}\\
+	&=y
+\end{align*}
+
+\textbf{(Continuidade)} Tome $(x_k)\in B(0,1)$ com $\lim x_k=x$ queremos provar que $f(x_k)\xrightarrow[k\to\infty]{}f(x)$. Usando a continuidade de normas em espaços vetoriais normados, temos $||x_k||\xrightarrow[k\to\infty]{}||x||$. Assim, como $1-||x_k||\neq0$ podemos aplicar a propriedade do limite da divisão de análise real\cite{lima1981curso}, afirmar que $\alpha_k\xrightarrow[k\to\infty]{}\alpha$, onde $\alpha_k=1/(1-||x_k||)$ e $\alpha=1/(1-||x||)$.
+Sendo $\alpha_k$ um sequência real e com limite $\alpha$ e $x_k$ a sequência em $\rn$ com limite $x$, temos por \cite{analise2} que o limite desse produto é o produto dos limites, assim:
+
+$f(x_k)=\alpha_kx_k\xrightarrow[k\to\infty]{}\alpha x=\dfrac{x}{1-||x||}$. como queríamos demonstrar.
+
+\textbf{(Continuidade da inversa)} Na demonstração da sobrejetividade, foi proposta a fórmula $f^{-1}(y)=\dfrac{y}{1+||y||}$. Queremos provar que dada uma sequência $(y_k)\in \rn$ convergindo pra $y\in\rn$ então $f^{-1}(y_k)$ converge para $f(y)$.
+Novamente podemos argumentar de forma análoga à demonstração da continuidade de $f$, escrevendo $y_k$ como $\alpha_ky_k$ sendo agora $\alpha_k=\frac{1}{1+||y_k||}$. Pela continuidade da norma e pela propriedade do limite do produto de sequência escalar por sequência vetorial, temos que 
+
+$f^{-1}(y_k)=\alpha_ky_k\xrightarrow[k\to\infty]{}\dfrac{y}{1+||y||},$
+
+como queríamos demonstrar.
+
+Usando o exercício 19 e composição homeomorfismos, concluímos que qualquer bola aberta é homeomorfa ao espaço $\rn$.
+
+\item Mostre que o cone $C = \{(x,y,z) \in \mathbb{R}^3; z = \sqrt{x^2 + y^2}\}$ e $\mathbb{R}^2$ são homeomorfos.
+
+\textbf{Solução:} Tome $f:\rr\to C$ dada por $f((x,y))=(x,y,\sqrt{x^2+y^2})$, e $f^{-1}(x,y,z)=(x,y)$. É fácil ver que $f(\rr)=C$ (f sobrejetiva) pela própria definição de $C$. A injetividade também segue trivialmente pois se dois pontos do cone tem as mesmas coordenadas, em particular, tem as mesmas coordenadas x e y, o que prova que $f(p_1)=f(p_2)\Rightarrow p_1=p_2$ com $p_1,p_2\in\rr$.
+
+A continuidade de $f$ segue da composição da continuidade da norma euclidiana pois $f(p),p\in\rr$ nada mais é do que $(x_p,y_p,||p||)$.
+
+A continuidade de $f^{-1}$ é trivial pois se $(x_k,y_k,||(x_k,y_k)||)$ converge para $(x,y,||(x,y)||)$, em particular $(x_k,y_k)\xrightarrow[k\to\infty]{}(x,y)$, e como $f^{-1}(x_k,y_k,||(x_k,y_k)||)=(x_k,y_k)$, o resultado segue.
+
+\end{enumerate}
+	\newpage
+%	 \addcontentsline{toc}{section}{Referências}
+	 
+\bibliographystyle{plain}
+\bibliography{refs}
+\end{document}
