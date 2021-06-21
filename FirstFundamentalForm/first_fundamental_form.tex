@@ -163,10 +163,12 @@ Finalmente vamos estabelecer o conceito de mensurabilidade que restringirá os t
 \end{defi}
 
 	Um exemplo de conjunto não mensurável à Jordan é $S=\mathbb{Q}\cap[0,1]$ como subconjunto de $\real$.
-	Qualquer cobertura superior desse conjunto por conjuntos elementares (uniões finitas de intervalos), precisa cobrir $[0,1]$ inteiramente, sendo assim $\mu^{*}(S)\geq1$. Para provar que $\mu^{*}(S)=1$ podemos tomar a sequência decrescente $[0,1+\frac1/n]$ cujo ínfimo da medida será 1.
+	Qualquer cobertura superior desse conjunto por conjuntos elementares (uniões finitas de intervalos), precisa cobrir $[0,1]$ inteiramente, sendo assim $\mu^{*}(S)\geq1$. Para provar que $\mu^{*}(S)=1$ podemos tomar a sequência decrescente $[0,1+\frac1n]$ cujo ínfimo da medida será 1.
 	Entretanto $\mu_{*}(S)=0$ por vacuidade de conjuntos elementares interiores. De fato não é possível definir um intervalo em $\mathbb{Q}\cap[0,1])$ que esteja inteiramente contido $S$, pela densidade dos irracionais. Sendo assim o supremo de $\mu_{*}$ estaria sendo tomado sobre o conjunto vazio que tem medida zero.
 	
 	Com argumentos análogos é possível provar que $\mu_{*}(\mathbb{Q}^n\cap[0,1]^n)=0$ e $\mu^{*}(\mathbb{Q}^n\cap[0,1]^n)=1$
+	
+	A nota de aula \href{https://www2.math.upenn.edu/~kazdan/509S07/jordan-meas.pdf}{deste link} dá um exemplo interessante de um conjunto aberto de $\rr$ que não é J-mensurável.
 	
 	Um critério para checar se um conjunto limitado $S\subset \rn$ é verificar se a função 
 	
@@ -225,7 +227,7 @@ Finalmente vamos estabelecer o conceito de mensurabilidade que restringirá os t
 	\subsection{O Cálculo de Áreas}
 		Pela seção \ref{jordan}, concluímos que um conjunto $\Omega\subset\rr$ é \textit{J-mensurável} quando a função característica $\one_\Omega$ é integrável, ou seja,
 		$$\displaystyle\int_\Omega dudv$$
-		está bem definida no sentido de Riemann, e é a área de $\Omega$, que detonaremos por $\mu(\Omega)$.
+		está bem definida no sentido de Riemann, e é a área de $\Omega$, que denotaremos por $\mu(\Omega)$.
 		
 		Dada uma superfície regular $S$ e uma parametrização $\sigma:U\subset\rr\to \sigma(U)\subset S$. Dado $\rcur\subset \sigma(U)$, se $\sigma^{-1}(\rcur)$ for limitado e J-mensurável em $\rr$, então diremos que $\rcur$ é J-mensurável. Assim, definimos a área de $\rcur$ como:
 		$$\mu(\rcur)=\displaystyle\int_{\sigma^{-1}(\rcur)}||\sigma_u\times\sigma_v||dudv$$
@@ -441,7 +443,7 @@ No caso de um cilindro gerado pela reta no plano $XZ$, $\alpha(v)=(r,0,v)$ com $
 			o que implica:
 			
 			$$\displaystyle\#\left(B\cap\frac1k\mathbb{Z}^n\right)=\prod_{j=1}^n\#\left(I_j\cap\frac1k\mathbb{Z}\right)$$
-			\end{appendices}
+			
 	
 	Dividindo ambos os lados por $k^n$ e utilizando o resultado já conhecido de intervalos, temos:
 	\begin{align*}
@@ -469,7 +471,7 @@ No caso de um cilindro gerado pela reta no plano $XZ$, $\alpha(v)=(r,0,v)$ com $
 	\end{align*}
 
 	que é justamente a fórmula de discretização para $m(B)$, o que finaliza a demonstração já que a decomposição $B_1',\ldots,B_m'$ foi tomada como arbitrária.
-	
+\end{appendices}
 	\newpage
 	\addcontentsline{toc}{section}{Referências}
 	%	\bibliography{refs}
